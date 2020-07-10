@@ -5,7 +5,7 @@ unzip -> Kristin_S.shp
 
 ## ...some googling
 There is a good tool for converting between data formats GeoJSON, Shapefile, PostGIS and others:
-(ogr2ogr)[https://gdal.org/programs/ogr2ogr.html], which is part of the (Geospatial Data Abstraction Library)[https://gdal.org/index.html]
+[ogr2ogr](https://gdal.org/programs/ogr2ogr.html), which is part of the [Geospatial Data Abstraction Library](https://gdal.org/index.html)
 
 ## Geojson specification
 Coordinate reference system is the World Geodetic System 1984 (WGS84), with long,lat units of decimal degreees aka Open Geospatial Consortium (OGC) urn:ogc:def:crs:OGC::CRS84
@@ -28,7 +28,7 @@ features have properties and geometry
 - properties is a list of stuff describing this feature aka road (some numbers and some strings)
 - geometry is an array of array[latitude, longitude, height]
 
-where height is meters above the (WGS 84 reference ellipsoid)[https://gisgeography.com/wgs84-world-geodetic-system/]"
+where height is meters above the [WGS 84 reference ellipsoid](https://gisgeography.com/wgs84-world-geodetic-system/)
 
 with a custom script, go though the collection and store the numbers as typed arrays instead of strings:
 
@@ -36,13 +36,12 @@ with a custom script, go though the collection and store the numbers as typed ar
 node features2typedarrays.js
 node features2properties.js
 ```
-features.f32array ~ 30MB
-lengths.uin16array ~ 7MB
-properties (3 numbers for now QClass, PredictedS, RemainingS) ~ 3 MB
+
+- features.f32array ~ 30MB
+- lengths.uin16array ~ 7MB
+- properties (3 numbers for now QClass, PredictedS, RemainingS) ~ 3 MB
 
 these can be fetched in parallell so it will potentially load
 400/30 = 13x faster, (but at a minimum 400/40 = 10x faster)
-
-## 
 
 
