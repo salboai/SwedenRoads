@@ -8,13 +8,13 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 async function fetchcollection() {
   return await Promise.all([
-    fetch("features.f32array")
+    fetch("/data/features.f32array")
       .then((res) => res.arrayBuffer())
       .then((buf) => new Float32Array(buf)),
-    fetch("lengths.uint16array")
+    fetch("/data/lengths.uint16array")
       .then((res) => res.arrayBuffer())
       .then((buf) => new Uint16Array(buf)),
-    fetch("properties.f32array")
+    fetch("/data/properties.f32array")
       .then((res) => res.arrayBuffer())
       .then((buf) => new Float32Array(buf)),
   ]);
@@ -45,6 +45,7 @@ function parsecollection(collection) {
   let featurecoordinates = [];
 
   for (let featureid = 0; featureid < lengths.length; featureid++) {
+    //for (let featureid = 0; featureid < 1000; featureid++) {
     len = (lengths[featureid] - 1) * 2; //2 numbers per feature coord
     featurecoordinates = slice2longlats(coords.slice(i, i + len));
     source.data.features.push({
