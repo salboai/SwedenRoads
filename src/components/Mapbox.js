@@ -136,7 +136,7 @@ export default class Mapbox extends React.Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     mapboxgl.accessToken = process.env.GATSBY_MAPBOX_ACCESS_TOKEN;
     this.map = new mapboxgl.Map({
       container: this.mapref.current,
