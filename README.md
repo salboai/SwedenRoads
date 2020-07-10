@@ -37,11 +37,11 @@ node features2typedarrays.js
 node features2properties.js
 ```
 
-- features.f32array ~ 30MB
-- lengths.uin16array ~ 7MB
-- properties (3 numbers for now QClass, PredictedS, RemainingS) ~ 3 MB
+- features.f32array ~ 29.5 MB
+- lengths.uin16array ~ 0.5 MB
+- properties (3 numbers for now QClass, PredictedS, RemainingS) ~ 2.7 MB
 
 these can be fetched in parallell so it will potentially load
-400/30 = 13x faster, (but at a minimum 400/40 = 10x faster)
+400/29.5 = 10.1 times faster, (but at a minimum 400/42.7 = 9.4 times faster)
 
 

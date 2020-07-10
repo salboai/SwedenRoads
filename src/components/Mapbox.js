@@ -29,12 +29,12 @@ function slice2longlats(v) {
 }
 
 function parsecollection(collection) {
-  console.log("STARTING PARSE");
   let coords = collection[0];
   let lengths = collection[1];
   let featureproperties = collection[2];
   let Nproperties = 3; //MAKE SURE THIS IS SAME AS IN featurecollection2properties.js
-  console.log("ANTAL VÄGAR: ", lengths.length);
+  console.log("Totalt antal vägar: ", lengths.length);
+
   let source = {
     type: "geojson",
     data: { type: "FeatureCollection", features: [] },
@@ -43,8 +43,8 @@ function parsecollection(collection) {
   let i = 0;
   let len = 0;
   let featurecoordinates = [];
-  //for (let featureid = 0; featureid < lengths.length; featureid++) {
-  for (let featureid = 0; featureid < 100000; featureid++) {
+
+  for (let featureid = 0; featureid < lengths.length; featureid++) {
     len = (lengths[featureid] - 1) * 2; //2 numbers per feature coord
     featurecoordinates = slice2longlats(coords.slice(i, i + len));
     source.data.features.push({
@@ -62,7 +62,6 @@ function parsecollection(collection) {
     });
     i += len;
   }
-  console.log("FINISHED PARSE");
   return source;
 }
 
@@ -138,17 +137,18 @@ export default class Mapbox extends React.Component {
 
   async componentDidMount() {
     mapboxgl.accessToken = process.env.GATSBY_MAPBOX_ACCESS_TOKEN;
+    this.map = new mapboxgl.Map({
+      container: this.mapref.current,
+      style: `mapbox://styles/mapbox/light-v9`,
+      center: this.state.center,
+      zoom: this.state.zoom,
+      minZoom: 4.0,
+      maxZoom: 17.0,
+      attributionControl: false,
+    });
+
     fetchcollection().then((collection) => {
       this.setState({ isfetching: false, isunpacking: true });
-      this.map = new mapboxgl.Map({
-        container: this.mapref.current,
-        style: `mapbox://styles/mapbox/light-v9`,
-        center: this.state.center,
-        zoom: this.state.zoom,
-        minZoom: 4.0,
-        maxZoom: 17.0,
-        attributionControl: false,
-      });
 
       let id = "allroads";
       this.map.on("load", () => {
@@ -194,14 +194,15 @@ export default class Mapbox extends React.Component {
         <>
           {this.state.isfetching ? (
             <>
-              <Typography variant="body1" align="center">
-                Hämtar komprimerad data <CircularProgress color="secondary" />
+              <Typography variant="body1" align="center" component="span">
+                Hämtar komprimerad data (30MB){" "}
+                <CircularProgress color="secondary" />
               </Typography>
             </>
           ) : null}
           {this.state.isunpacking ? (
             <>
-              <Typography variant="body1" align="center">
+              <Typography variant="body1" align="center" component="span">
                 Packar upp data <CircularProgress />
               </Typography>
             </>

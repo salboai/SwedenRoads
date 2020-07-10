@@ -1,4 +1,3 @@
-//https://stackoverflow.com/questions/20306750/what-is-a-compact-way-to-save-a-float32array-to-disk-on-node-js/23347027
 var fs = require('fs');
 const collection = require("./featurecollection.json")
 
@@ -21,10 +20,10 @@ function writef32array(features) {
 
   
   let buffer = new Buffer(N*4); //4 bytes per float aka 32bit per float
-  //let buffer2 = new Buffer(sum(lengths)); //1 byte per uint8
-  let buffer2 = new Buffer(sum(lengths)*2); //2 byte per uint16
+  let buffer2 = new Buffer(lengths.length*2); //2 byte per uint16
 
   let i=0 //current index of f32array. incr every time its written to.
+  let k=0 //current index of uint16array. incr every time its written to.
   for (let n=0; n<features.length; n++) {
     if (features[n].geometry !== null) {
       for (let j=0; j<features[n].geometry.coordinates.length-1; j++) {
@@ -34,8 +33,8 @@ function writef32array(features) {
           i+=1  
         }
       }
-      //buffer2.writeUInt8(lengths[n], n); //write in Uint8, at offset n
-      buffer2.writeUInt16LE(lengths[n], n*2)
+      buffer2.writeUInt16LE(lengths[k], k*2)
+      k+=1
     }
   }
   
