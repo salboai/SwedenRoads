@@ -7,8 +7,10 @@ import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 async function fetchcollection() {
+  //let url = "/data/features.f32array"
+  let url = "https://storage.googleapis.com/swedenroads/coordinates.f32array";
   return await Promise.all([
-    fetch("/data/features.f32array")
+    fetch(url)
       .then((res) => res.arrayBuffer())
       .then((buf) => new Float32Array(buf)),
     fetch("/data/lengths.uint16array")
