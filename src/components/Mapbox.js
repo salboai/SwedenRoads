@@ -8,15 +8,17 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 async function fetchcollection() {
   //let url = "/data/features.f32array"
-  let url = "https://storage.googleapis.com/swedenroads/coordinates.f32array";
+  let url1 = "https://storage.googleapis.com/swedenroads/coordinates.f32array";
+  let url2 = "https://storage.googleapis.com/swedenroads/lengths.uint16array";
+  let url3 = "https://storage.googleapis.com/swedenroads/properties.f32array";
   return await Promise.all([
-    fetch(url)
+    fetch(url1)
       .then((res) => res.arrayBuffer())
       .then((buf) => new Float32Array(buf)),
-    fetch("/data/lengths.uint16array")
+    fetch(url2)
       .then((res) => res.arrayBuffer())
       .then((buf) => new Uint16Array(buf)),
-    fetch("/data/properties.f32array")
+    fetch(url3)
       .then((res) => res.arrayBuffer())
       .then((buf) => new Float32Array(buf)),
   ]);
