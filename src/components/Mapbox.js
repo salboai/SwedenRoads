@@ -93,9 +93,9 @@ const layerpaint = {
     3,
     "#FFFF00",
     4,
-    "#7FFF00",
+    "#9FCC00",
     5,
-    "#00FF00",
+    "#00CC00",
     "#ccc", //other
   ],
 };
