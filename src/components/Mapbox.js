@@ -163,10 +163,23 @@ export default class Mapbox extends React.Component {
 
       this.map.on("click", (e) => {
         var mousefeatures = this.map.queryRenderedFeatures(e.point);
+
+        //mousefeatures can be several things, some builtin to mapbox
+        //check if actually clicked one of our dataset roads.
+        let clickedonroad = false;
+        let ind = 0;
         for (let i = 0; i < mousefeatures.length; i++) {
           if (mousefeatures[i].source === "allroads") {
-            console.log("properties: ", mousefeatures[i].properties);
+            clickedonroad = true;
+            ind = i;
           }
+        }
+
+        //and call a function that was passed down
+        if (clickedonroad) {
+          this.props.updateroadinfo(mousefeatures[ind].properties);
+        } else {
+          this.props.updateroadinfo({});
         }
       });
     });
@@ -214,8 +227,8 @@ export default class Mapbox extends React.Component {
           ) : null}
           <div
             style={{
-              width: "100%",
-              height: "80vh",
+              width: "100vv",
+              height: "96vh",
               position: "relative", //needed for controls to layout correctly
               margin: "auto",
             }}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import {
   Typography,
@@ -8,12 +8,13 @@ import {
   Toolbar,
   AppBar,
   useScrollTrigger,
+  Grid,
 } from "@material-ui/core";
 
-import Grid from "@material-ui/core/Grid";
-import Karta from "./Karta";
-
 import Button from "@material-ui/core/Button";
+import Karta from "./Karta";
+import InfoBox from "./InfoBox";
+import InfoDrawer from "./InfoDrawer";
 
 function Header(props) {
   const { children } = props;
@@ -32,8 +33,20 @@ Header.propTypes = {
 };
 
 export default function Layout(props) {
+  const [roadproperties, setRoadproperties] = useState({
+    id: "44525",
+    QClass: 3,
+    PredictedS: 23,
+    RemainingS: 6,
+  });
+
+  const updateroadinfo = (x) => {
+    setRoadproperties(x);
+  };
+
   return (
     <>
+      {/*
       <Header>
         <AppBar position="fixed" component="span" style={{ padding: 0 }}>
           <Toolbar style={{ margin: "auto", width: "100%" }}>
@@ -55,15 +68,14 @@ export default function Layout(props) {
         </AppBar>
       </Header>
       <Toolbar />
-      <Container>
-        <Box my={2}>
-          <Karta />
-          <Typography variant="body2" align="center" color="textPrimary">
-            Underhållsbehov - Färgkodad Karta
-          </Typography>
-        </Box>
-        <Divider />
-      </Container>
+    */}
+      <InfoDrawer roadproperties={roadproperties} />
+      <Box my={0}>
+        <Karta updateroadinfo={updateroadinfo} />
+        <Typography variant="subtitle1" align="center" color="textPrimary">
+          Klicka på en väg för information.
+        </Typography>
+      </Box>
     </>
   );
 }

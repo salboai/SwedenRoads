@@ -1,10 +1,10 @@
 import React from "react";
 import Mapbox from "./Mapbox";
 
-export default function Karta() {
+export default function Karta(props) {
   return (
     <>
-      <Mapbox />
+      <Mapbox updateroadinfo={props.updateroadinfo} />
     </>
   );
 }
