@@ -1,8 +1,8 @@
 /* eslint-disable max-len, no-underscore-dangle */
 import React from "react";
 import mapboxgl from "mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
-
+//import "mapbox-gl/dist/mapbox-gl.css";
+import "../css/mapbox-gl.css";
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -41,6 +41,7 @@ function parsecollection(collection) {
 
   let source = {
     type: "geojson",
+    //generateId: true,
     data: { type: "FeatureCollection", features: [] },
   };
 
@@ -54,6 +55,7 @@ function parsecollection(collection) {
     featurecoordinates = slice2longlats(coords.slice(i, i + len));
     source.data.features.push({
       type: "Feature",
+      id: `${featureid}`,
       properties: {
         id: `${featureid}`,
         QClass: featureproperties[featureid * Nproperties],
@@ -100,31 +102,24 @@ const layerpaint = {
   ],
 };
 
-//QClass 1,2,3,4,5
-//RemainingS -91..34
-//PredictedS 3..37
-
+//"case",
+//["boolean", ["feature-state", "hover"], false],
 const layerpaint2 = {
-  "line-width": {
-    base: 1,
-    stops: [
-      [8, 1],
-      [9, 2],
-      [10, 4],
-      [11, 8],
-      [12, 16],
-      [13, 16],
-      [14, 16],
-    ],
-  },
+  "line-width": ["case", ["boolean", ["feature-state", "hover"], false], 15, 5],
   "line-color": [
-    "interpolate",
-    ["linear"],
+    "match",
     ["get", "QClass"],
     1,
     "#FF0000",
+    2,
+    "#FF8000",
+    3,
+    "#FFFF00",
+    4,
+    "#9FCC00",
     5,
-    "#00FF00",
+    "#00CC00",
+    "#ccc", //other
   ],
 };
 
@@ -132,6 +127,7 @@ export default class Mapbox extends React.Component {
   constructor(props) {
     super(props);
     this.mapref = React.createRef();
+    this.hoveredID = null;
     this.state = {
       center: [16.5509, 59.6368], //västerås
       zoom: 8.37,
@@ -161,6 +157,39 @@ export default class Mapbox extends React.Component {
         this.setState({ isunpacking: false });
       });
 
+      this.map.on("mousemove", (e) => {
+        var mousefeatures = this.map.queryRenderedFeatures(e.point);
+        let hoveredID = null;
+        for (let i = 0; i < mousefeatures.length; i++) {
+          if (mousefeatures[i].source === "allroads") {
+            hoveredID = mousefeatures[i].id;
+          }
+        }
+
+        if (!hoveredID && this.hoveredID) {
+          //not hovering but this.hoveredID is still active. remove it.
+          this.map.removeFeatureState({
+            source: "allroads",
+            id: this.hoveredID,
+          });
+          this.hoveredID = null;
+        } else if (hoveredID && this.hoveredID !== hoveredID) {
+          //is hovering but not on this.hoveredID. change to new hoveredID
+          this.map.removeFeatureState({
+            source: "allroads",
+            id: this.hoveredID,
+          });
+          this.map.setFeatureState(
+            {
+              source: "allroads",
+              id: hoveredID,
+            },
+            { hover: true }
+          );
+          this.hoveredID = hoveredID;
+        }
+      });
+
       this.map.on("click", (e) => {
         var mousefeatures = this.map.queryRenderedFeatures(e.point);
 
@@ -175,10 +204,12 @@ export default class Mapbox extends React.Component {
           }
         }
 
-        //and call a function that was passed down
+        //and call a function that was passed down, also move the marker
         if (clickedonroad) {
+          this.placemarker(e.lngLat);
           this.props.updateroadinfo(mousefeatures[ind].properties);
         } else {
+          this.placemarker([0, 0]);
           this.props.updateroadinfo({});
         }
       });
@@ -196,8 +227,19 @@ export default class Mapbox extends React.Component {
         "line-cap": "round",
         //visibility: "none",
       },
-      paint: layerpaint,
+      paint: layerpaint2,
     });
+
+    let el = document.createElement("div");
+    el.className = "marker";
+    this.markerelement = new mapboxgl.Marker(el)
+      .setLngLat([0, 0])
+      .addTo(this.map);
+  }
+
+  placemarker(longlat) {
+    //this.markerelement.setLngLat(longlat).addTo(this.map);
+    this.markerelement.setLngLat(longlat);
   }
 
   componentWillUnmount() {
