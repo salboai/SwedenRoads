@@ -5,12 +5,11 @@ import "../css/mapillary-js.css";
 
 export default function MapillaryBox(props) {
   const mref = useRef();
+  const ClientID = process.env.GATSBY_MAPILLARY_CLIENTID;
 
   useEffect(() => {
-    const ClientID = process.env.GATSBY_MAPILLARY_CLIENTID;
     const viewer = new Mapillary.Viewer(mref.current, ClientID, props.imagekey);
-    console.log("useffect props.imagekey: ", props.imagekey);
   }, [props.imagekey]);
 
-  return <Box ref={mref} width={"640px"} height={"480px"} />;
+  return <Box ref={mref} width="100%" height="100%" />;
 }

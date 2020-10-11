@@ -33,18 +33,15 @@ Header.propTypes = {
 };
 
 export default function Layout(props) {
-  const [roadproperties, setRoadproperties] = useState({
-    id: "44525",
-    QClass: 3,
-    PredictedS: 23,
-    RemainingS: 6,
-  });
+  const [roadproperties, setRoadproperties] = useState({});
   const [images, setImages] = useState([]);
 
   const updateroadinfo = (properties, images) => {
     setRoadproperties(properties);
     if (images && images.length > 0) {
       setImages(images);
+    } else {
+      setImages([]);
     }
   };
 
