@@ -24,6 +24,16 @@ async function fetchcollection() {
   ]);
 }
 
+async function fetchNearbyImages(longlat, radius = 100) {
+  const MapillaryClientID = process.env.GATSBY_MAPILLARY_CLIENTID;
+  const baseurl = "https://a.mapillary.com/v3/images?";
+  const lng = longlat.lng;
+  const lat = longlat.lat;
+  const mapillaryurl = `${baseurl}client_id=${MapillaryClientID}&closeto=${lng},${lat}&radius=${radius}`;
+  const featurecollection = await fetch(mapillaryurl).then((res) => res.json());
+  return featurecollection.features;
+}
+
 function slice2longlats(v) {
   let longlats = [];
   for (let i = 0; i < v.length; i += 2) {
@@ -207,7 +217,11 @@ export default class Mapbox extends React.Component {
         //and call a function that was passed down, also move the marker
         if (clickedonroad) {
           this.placemarker(e.lngLat);
-          this.props.updateroadinfo(mousefeatures[ind].properties);
+          console.log("e.lngLat: ", e.lngLat);
+
+          fetchNearbyImages(e.lngLat).then((images) => {
+            this.props.updateroadinfo(mousefeatures[ind].properties, images);
+          });
         } else {
           this.placemarker([0, 0]);
           this.props.updateroadinfo({});

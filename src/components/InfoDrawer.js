@@ -7,7 +7,7 @@ import {
   Button,
   Box,
 } from "@material-ui/core";
-import MapillaryBox from "./MapillaryBox";
+import MapillaryImage from "./MapillaryBox";
 
 function isnotempty(obj) {
   for (var prop in obj) {
@@ -17,27 +17,16 @@ function isnotempty(obj) {
 }
 
 export default function InfoDrawer(props) {
-  /*
-  const [isopen, setIsopen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setIsopen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setIsopen(false);
-  };
-  <Button onClick={handleDrawerOpen}>Öppna</Button>
-  <Button onClick={handleDrawerClose}>Stäng</Button>
-*/
   const road = props.roadproperties;
   const open = isnotempty(road);
+  const imagekey =
+    props.images.length > 0 ? props.images[0].properties.key : null;
 
   return (
     <Drawer variant="persistent" anchor="left" open={open}>
       <Box my={2} style={{ width: "50vv" }}>
         <Container>
-          <MapillaryBox />
+          <MapillaryImage imagekey={imagekey} />
           <Typography paragraph variant="h6" align="center">
             Väginformation
           </Typography>

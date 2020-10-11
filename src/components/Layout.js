@@ -39,9 +39,13 @@ export default function Layout(props) {
     PredictedS: 23,
     RemainingS: 6,
   });
+  const [images, setImages] = useState([]);
 
-  const updateroadinfo = (x) => {
-    setRoadproperties(x);
+  const updateroadinfo = (properties, images) => {
+    setRoadproperties(properties);
+    if (images && images.length > 0) {
+      setImages(images);
+    }
   };
 
   return (
@@ -69,7 +73,7 @@ export default function Layout(props) {
       </Header>
       <Toolbar />
     */}
-      <InfoDrawer roadproperties={roadproperties} />
+      <InfoDrawer roadproperties={roadproperties} images={images} />
       <Box my={0}>
         <Karta updateroadinfo={updateroadinfo} />
         <Typography variant="subtitle1" align="center" color="textPrimary">
