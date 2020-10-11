@@ -7,6 +7,7 @@ import {
   Button,
   Box,
 } from "@material-ui/core";
+import MapillaryBox from "./MapillaryBox";
 
 function isnotempty(obj) {
   for (var prop in obj) {
@@ -34,8 +35,9 @@ export default function InfoDrawer(props) {
 
   return (
     <Drawer variant="persistent" anchor="left" open={open}>
-      <Box my={2} style={{ width: "350px" }}>
+      <Box my={2} style={{ width: "50vv" }}>
         <Container>
+          <MapillaryBox />
           <Typography paragraph variant="h6" align="center">
             Väginformation
           </Typography>
