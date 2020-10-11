@@ -1,0 +1,9 @@
+[build]
+  publish = "public/"
+  command = "gatsby build"
+
+[build.environment]
+  GATSBY_MAPBOX_ACCESS_TOKEN="pk.eyJ1Ijoic2FsYm9haSIsImEiOiJja2Nldjl3bjcwYzZsMnJwYzFrNnF1YTIwIn0.P9sRvGp848IlDhyJPKTw0Q"
+  GATSBY_MAPILLARY_CLIENTID="Wm9hc3hHMkdWd0NKNHBiQ3VpUVY4Yzo0YjJkZDk0MjNjMGUyNjBl"
+
+
