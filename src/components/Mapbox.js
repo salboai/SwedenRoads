@@ -1,13 +1,11 @@
 /* eslint-disable max-len, no-underscore-dangle */
 import React from "react";
 import mapboxgl from "mapbox-gl";
-//import "mapbox-gl/dist/mapbox-gl.css";
 import "../css/mapbox-gl.css";
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 async function fetchcollection() {
-  //let url = "/data/features.f32array"
   let url1 = "https://storage.googleapis.com/swedenroads/coordinates.f32array";
   let url2 = "https://storage.googleapis.com/swedenroads/lengths.uint16array";
   let url3 = "https://storage.googleapis.com/swedenroads/properties.f32array";
@@ -158,74 +156,79 @@ export default class Mapbox extends React.Component {
       attributionControl: false,
     });
 
-    fetchcollection().then((collection) => {
-      this.setState({ isfetching: false, isunpacking: true });
+    fetchcollection()
+      .then((collection) => {
+        this.setState({ isfetching: false, isunpacking: true });
 
-      let id = "allroads";
-      this.map.on("load", () => {
-        this.createsource(id, parsecollection(collection));
-        this.setState({ isunpacking: false });
-      });
+        let id = "allroads";
+        this.map.on("load", () => {
+          let parsedcollection = parsecollection(collection);
+          this.createsource(id, parsedcollection);
+          this.setState({ isunpacking: false });
+        });
 
-      this.map.on("mousemove", (e) => {
-        var mousefeatures = this.map.queryRenderedFeatures(e.point);
-        let hoveredID = null;
-        for (let i = 0; i < mousefeatures.length; i++) {
-          if (mousefeatures[i].source === "allroads") {
-            hoveredID = mousefeatures[i].id;
+        this.map.on("mousemove", (e) => {
+          var mousefeatures = this.map.queryRenderedFeatures(e.point);
+          let hoveredID = null;
+          for (let i = 0; i < mousefeatures.length; i++) {
+            if (mousefeatures[i].source === "allroads") {
+              hoveredID = mousefeatures[i].id;
+            }
           }
-        }
 
-        if (!hoveredID && this.hoveredID) {
-          //not hovering but this.hoveredID is still active. remove it.
-          this.map.removeFeatureState({
-            source: "allroads",
-            id: this.hoveredID,
-          });
-          this.hoveredID = null;
-        } else if (hoveredID && this.hoveredID !== hoveredID) {
-          //is hovering but not on this.hoveredID. change to new hoveredID
-          this.map.removeFeatureState({
-            source: "allroads",
-            id: this.hoveredID,
-          });
-          this.map.setFeatureState(
-            {
+          if (!hoveredID && this.hoveredID) {
+            //not hovering but this.hoveredID is still active. remove it.
+            this.map.removeFeatureState({
               source: "allroads",
-              id: hoveredID,
-            },
-            { hover: true }
-          );
-          this.hoveredID = hoveredID;
-        }
-      });
-
-      this.map.on("click", (e) => {
-        var mousefeatures = this.map.queryRenderedFeatures(e.point);
-
-        //mousefeatures can be several things, some builtin to mapbox
-        //check if actually clicked one of our dataset roads.
-        let clickedonroad = false;
-        let ind = 0;
-        for (let i = 0; i < mousefeatures.length; i++) {
-          if (mousefeatures[i].source === "allroads") {
-            clickedonroad = true;
-            ind = i;
+              id: this.hoveredID,
+            });
+            this.hoveredID = null;
+          } else if (hoveredID && this.hoveredID !== hoveredID) {
+            //is hovering but not on this.hoveredID. change to new hoveredID
+            this.map.removeFeatureState({
+              source: "allroads",
+              id: this.hoveredID,
+            });
+            this.map.setFeatureState(
+              {
+                source: "allroads",
+                id: hoveredID,
+              },
+              { hover: true }
+            );
+            this.hoveredID = hoveredID;
           }
-        }
+        });
 
-        //and call a function that was passed down, also move the marker
-        if (clickedonroad) {
-          this.placemarker(e.lngLat);
-          fetchNearbyImages(e.lngLat).then((images) => {
-            this.props.updateroadinfo(mousefeatures[ind].properties, images);
-          });
-        } else {
-          this.placemarker([0, 0]);
-          this.props.updateroadinfo({});
-        }
+        this.map.on("click", (e) => {
+          var mousefeatures = this.map.queryRenderedFeatures(e.point);
+
+          //mousefeatures can be several things, some builtin to mapbox
+          //check if actually clicked one of our dataset roads.
+          let clickedonroad = false;
+          let ind = 0;
+          for (let i = 0; i < mousefeatures.length; i++) {
+            if (mousefeatures[i].source === "allroads") {
+              clickedonroad = true;
+              ind = i;
+            }
+          }
+
+          //and call a function that was passed down, also move the marker
+          if (clickedonroad) {
+            this.placemarker(e.lngLat);
+            fetchNearbyImages(e.lngLat).then((images) => {
+              this.props.updateroadinfo(mousefeatures[ind].properties, images);
+            });
+          } else {
+            this.placemarker([0, 0]);
+            this.props.updateroadinfo({});
+          }
+        });
+      })
+      .catch((err) => {
+        console.log("fetchcollection().catch: ", err);
       });
-    });
   }
 
   createsource(id, source) {
@@ -264,21 +267,21 @@ export default class Mapbox extends React.Component {
     } else {
       return (
         <>
-          {this.state.isfetching ? (
+          {this.state.isfetching && (
             <>
               <Typography variant="body1" align="center" component="span">
                 Hämtar komprimerad data (30MB){" "}
                 <CircularProgress color="secondary" />
               </Typography>
             </>
-          ) : null}
-          {this.state.isunpacking ? (
+          )}
+          {this.state.isunpacking && (
             <>
-              <Typography variant="body1" justify="center" component="span">
+              <Typography variant="body1" align="center" component="span">
                 Packar upp data <CircularProgress />
               </Typography>
             </>
-          ) : null}
+          )}
           <div
             style={{
               width: "100vv",
