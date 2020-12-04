@@ -5,6 +5,7 @@ import "../css/mapbox-gl.css";
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
+/*
 async function fetchcollection() {
   let url1 = "https://storage.googleapis.com/swedenroads/coordinates.f32array";
   let url2 = "https://storage.googleapis.com/swedenroads/lengths.uint16array";
@@ -19,6 +20,30 @@ async function fetchcollection() {
     fetch(url3)
       .then((res) => res.arrayBuffer())
       .then((buf) => new Float32Array(buf)),
+  ]);
+}
+*/
+
+async function fetchcollection() {
+  //let url1 = "/coordinates.f32array";
+  //let url2 = "/lengths.uint16array";
+  //let url3 = "/properties.int16array";
+  let url1 =
+    "https://storage.googleapis.com/swedenroads/coordinates2020.f32array";
+  let url2 =
+    "https://storage.googleapis.com/swedenroads/lengths2020.uint16array";
+  let url3 =
+    "https://storage.googleapis.com/swedenroads/properties2020.int16array";
+  return await Promise.all([
+    fetch(url1)
+      .then((res) => res.arrayBuffer())
+      .then((buf) => new Float32Array(buf)),
+    fetch(url2)
+      .then((res) => res.arrayBuffer())
+      .then((buf) => new Uint16Array(buf)),
+    fetch(url3)
+      .then((res) => res.arrayBuffer())
+      .then((buf) => new Int16Array(buf)),
   ]);
 }
 
@@ -44,7 +69,7 @@ function parsecollection(collection) {
   let coords = collection[0];
   let lengths = collection[1];
   let featureproperties = collection[2];
-  let Nproperties = 3; //MAKE SURE THIS IS SAME AS IN featurecollection2properties.js
+  let Nproperties = 31; //MAKE SURE THIS IS SAME AS IN featurecollection2properties.js
   console.log("Totalt antal vägar: ", lengths.length);
 
   let source = {
@@ -59,16 +84,44 @@ function parsecollection(collection) {
 
   for (let featureid = 0; featureid < lengths.length; featureid++) {
     //for (let featureid = 0; featureid < 1000; featureid++) {
-    len = (lengths[featureid] - 1) * 2; //2 numbers per feature coord
+    len = lengths[featureid] * 2; //2 numbers per feature coord
     featurecoordinates = slice2longlats(coords.slice(i, i + len));
     source.data.features.push({
       type: "Feature",
       id: `${featureid}`,
       properties: {
         id: `${featureid}`,
-        QClass: featureproperties[featureid * Nproperties],
-        PredictedS: featureproperties[featureid * Nproperties + 1],
-        RemainingS: featureproperties[featureid * Nproperties + 2],
+        ÅtrstnL: featureproperties[featureid * Nproperties],
+        Hastght: featureproperties[featureid * Nproperties + 1],
+        DoU2017: featureproperties[featureid * Nproperties + 2],
+        ÅDT_tng: featureproperties[featureid * Nproperties + 3],
+        ÅDT_mtr: featureproperties[featureid * Nproperties + 4],
+        Vägnmmr: featureproperties[featureid * Nproperties + 5],
+        Vägktgr: featureproperties[featureid * Nproperties + 6],
+        Vägtyp: featureproperties[featureid * Nproperties + 7],
+        Längd: featureproperties[featureid * Nproperties + 8],
+        Blggnngst: featureproperties[featureid * Nproperties + 9],
+        Län_nr: featureproperties[featureid * Nproperties + 10],
+        Kmmn_nr: featureproperties[featureid * Nproperties + 11],
+        Trfkkls: featureproperties[featureid * Nproperties + 12],
+        IRI_ndr: featureproperties[featureid * Nproperties + 13],
+        Sprdjp_: featureproperties[featureid * Nproperties + 14],
+        Region: featureproperties[featureid * Nproperties + 15],
+        Ålder: featureproperties[featureid * Nproperties + 16],
+        FrvntdL: featureproperties[featureid * Nproperties + 17],
+        TllstnI: featureproperties[featureid * Nproperties + 18],
+        IndxKls: featureproperties[featureid * Nproperties + 19],
+        ÅDT_frd: featureproperties[featureid * Nproperties + 20] * 10,
+        Spårdjp: featureproperties[featureid * Nproperties + 21] / 100,
+        IRI: featureproperties[featureid * Nproperties + 22] / 100,
+        Vägbrdd: featureproperties[featureid * Nproperties + 23] / 100,
+        Brghtsk: featureproperties[featureid * Nproperties + 24],
+        Byear: featureproperties[featureid * Nproperties + 25],
+        Bmonth: featureproperties[featureid * Nproperties + 26],
+        Bday: featureproperties[featureid * Nproperties + 27],
+        Myear: featureproperties[featureid * Nproperties + 28],
+        Mmonth: featureproperties[featureid * Nproperties + 29],
+        Mday: featureproperties[featureid * Nproperties + 30],
       },
       geometry: {
         type: "LineString",
@@ -95,7 +148,7 @@ const layerpaint = {
   },
   "line-color": [
     "match",
-    ["get", "QClass"],
+    ["get", "IndxKls"],
     1,
     "#FF0000",
     2,
@@ -116,7 +169,7 @@ const layerpaint2 = {
   "line-width": ["case", ["boolean", ["feature-state", "hover"], false], 15, 5],
   "line-color": [
     "match",
-    ["get", "QClass"],
+    ["get", "IndxKls"],
     1,
     "#FF0000",
     2,
