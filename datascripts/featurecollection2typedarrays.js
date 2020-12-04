@@ -19,14 +19,14 @@ function writef32array(features) {
   }
 
   
-  let buffer = new Buffer(N*4); //4 bytes per float aka 32bit per float
-  let buffer2 = new Buffer(lengths.length*2); //2 byte per uint16
+  let buffer = new Buffer.alloc(N*4); //4 bytes per float aka 32bit per float
+  let buffer2 = new Buffer.alloc(lengths.length*2); //2 byte per uint16
 
   let i=0 //current index of f32array. incr every time its written to.
   let k=0 //current index of uint16array. incr every time its written to.
   for (let n=0; n<features.length; n++) {
     if (features[n].geometry !== null) {
-      for (let j=0; j<features[n].geometry.coordinates.length-1; j++) {
+      for (let j=0; j<features[n].geometry.coordinates.length; j++) {
         //write in Little-Endian format, at offset i*4
         for (let d=0; d<2; d++) { //long and lat
           buffer.writeFloatLE(features[n].geometry.coordinates[j][d], i*4);
@@ -35,6 +35,8 @@ function writef32array(features) {
       }
       buffer2.writeUInt16LE(lengths[k], k*2)
       k+=1
+    } else {
+      console.log("features[n].geometry for n: ",n," was null")
     }
   }
   

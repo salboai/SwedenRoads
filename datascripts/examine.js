@@ -1,111 +1,71 @@
 //https://stackoverflow.com/questions/20306750/what-is-a-compact-way-to-save-a-float32array-to-disk-on-node-js/23347027
-var fs = require('fs');
+const fs = require('fs');
 const collection = require("./featurecollection.json")
 
-const numberproperties = [
-"LSTRKAID",
-"RELSTART",
-"RELSLUT",
-"Shape_Leng",
-"Traffic_cl",
-"Length",
-"SP_MEAN",
-"IR_MEAN",
-"SpeedLimit",
-"AADT",
-"AADT_heavy",
-"Width",
-"Age",
-"IRI_maint",
-"SP_maint",
-"PredictedS",
-"RemainingS",
-"QClass",
-]
-
-function sum(v) {
-  return v.reduce((a,b)=>a+b,0)
-}
-
-function arrayMin(arr) {
-  return arr.reduce(function (p, v) {
-    return ( p < v ? p : v );
-  });
-}
-
-function arrayMax(arr) {
-  return arr.reduce(function (p, v) {
-    return ( p > v ? p : v );
-  });
-}
-
-function examine(features) {
-  let vRemainingS = []
-  let vPredictedS = []
-  let vQClass = []
-  for (let n=0; n<features.length; n++) {
-    if (features[n].geometry !== null) {
-      let r = features[n].properties.RemainingS
-      let p = features[n].properties.PredictedS
-      let q = features[n].properties.QClass
-      if (r !== null && p !== null) {
-        vRemainingS.push(features[n].properties.RemainingS)
-        vPredictedS.push(features[n].properties.PredictedS)
-        vQClass.push(features[n].properties.QClass)
-      }
-      
-    }
-  }
-
-  console.log("min vQClass: ",arrayMin(vQClass))
-  console.log("max vQClass: ",arrayMax(vQClass))
-
-  console.log("min vRemainingS: ",arrayMin(vRemainingS))
-  console.log("max vRemainingS: ",arrayMax(vRemainingS))
-  //min vRemainingS: -91
-  //max vRemainingS: 34
-
-  console.log("min vPredictedS: ",arrayMin(vPredictedS))
-  console.log("max vPredictedS: ",arrayMax(vPredictedS))
-  //min vPredictedS: 3
-  //max vPredictedS: 37
-}
-
-examine(collection.features)
+//console.log(collection.features[0].properties)
 /*
-const template = {
-OBJECTID: 101,
-LSTRKAID: 117,
-OID_: '1000:33726',
-RELSTART: 0.2359744094,
-RELSLUT: 0.2395289862,
-Shape_Leng: 43.6087444164,
-X: 330529.588535,
-Y: 6381575.06599,
-X2: 330572.658,
-Y2: 6381580.592,
-Traffic_cl: 5,
-Length: 44,
-SP_MEAN: 3.2318181761,
-IR_MEAN: 1.1959090905,
-PavementTy: 'Asphalt concrete',
-SpeedLimit: 60,
-StoneSize: 'medium',
-ClimateZon: 'South',
-Roadtype: 'Ordinary road',
-RoadCatego: 'Secondary',
-Region: 'Vast',
-AADT: 3150,
-AADT_heavy: 204,
-Width: 62,
-Age: 1,
-IRI_maint: 4.9,
-SP_maint: 18,
-PredictedS: 22,
-RemainingS: 21,
-QClass: 5
+n=172158
+console.log(collection.features[n-1].properties)
+console.log(collection.features[n].properties)
+console.log(collection.features[n+1].properties)
+*/
+//ID: 2, //this will go big, ignore?
+
+//make data fit as Int16Array 
+/*
+'Blggnngsd': '1985/09/12', //[Byear,Bmonth,Bday] = Blggnngsd.split("/")
+'Mätdatm': '2019/05/03', //[Mear,Mmonth,Mday] = Blggnngsd.split("/")
+
+'Brghtsk': '1', //parseInt(Brghtsk)
+'Spårdjp': 2.8, //Math.round(Spårdjp*100)
+'IRI': 2.95, //Math.round(IRI*100)
+'Vägbrdd': 5.6, ////Math.round(Vägbrdd*100)
+'Hastght': 70,
+'DoU2017': 6,
+'ÅDT_frd': 868,
+'ÅDT_tng': 42,
+'ÅDT_mtr': 2015,
+'Vägnmmr': 521,
+'Vägktgr': 4,
+'Vägtyp': 4,
+'Längd': 699,
+'Blggnngst': 2,
+'Län_nr': 12,
+'Kmmn_nr': 1233,
+'Trfkkls': 3,
+'IRI_ndr': 5.8,
+'Sprdjp_': 24,
+'Region': 5,
+'Ålder': 35,
+'FrvntdL': 26,
+'ÅtrstnL': -9, 
+'TllstnI': 11,
+'IndxKls': 1
+*/
+
+function examineprop(features) {
+	let min = features[0].properties["ÅDT_frd"]
+	let max = features[0].properties["ÅDT_frd"]
+	k = 0
+	for (let n = 0; n < features.length; n++) {
+    	if (features[n].geometry !== null) {
+    		let v = features[n].properties["ÅDT_frd"]
+    		//if (v>65535) { //uint16 max value
+    		if (v>32767) { //int16 max value
+    			console.log("value: ",v, " at n: ",n)
+    			k+=1;
+    		}
+    		min = Math.min(min, v)
+    		max = Math.max(max, v)
+		}
+	}
+	console.log("min: ",min)
+	console.log("max: ",max)
+	console.log(k," items exceed int16 size") //1139  items exceed int16 size
 }
 
 
 
-*/
+
+
+examineprop(collection.features)
