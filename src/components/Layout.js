@@ -9,6 +9,7 @@ export default function Layout(props) {
   const [images, setImages] = useState([]);
 
   const updateroadinfo = (properties, images) => {
+    //console.log("images: ", images);
     setRoadproperties(properties);
     if (images && images.length > 0) {
       setImages(images);

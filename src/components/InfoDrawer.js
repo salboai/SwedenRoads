@@ -51,11 +51,18 @@ function Row(props) {
   );
 }
 
+function datestr(y, m, d) {
+  let month = m < 10 ? `0${m}` : `${m}`;
+  let day = d < 10 ? `0${d}` : `${d}`;
+  return `${y}-${month}-${day}`;
+}
+
 export default function InfoDrawer(props) {
   const road = props.roadproperties;
   const open = isnotempty(road);
   const imageexist = props.images.length > 0;
   const imagekey = imageexist && props.images[0].properties.key;
+  const imagecapturedate = imageexist && props.images[0].properties.captured_at;
 
   return (
     <Drawer variant="persistent" anchor="left" open={open}>
@@ -63,7 +70,12 @@ export default function InfoDrawer(props) {
         <Container>
           <Box width="640px" height="480px">
             {imageexist ? (
-              <MapillaryBox imagekey={imagekey} />
+              <>
+                <MapillaryBox imagekey={imagekey} />
+                <Typography variant="body2" align="center">
+                  Image captured {imagecapturedate.slice(0, 10)}
+                </Typography>
+              </>
             ) : (
               <Typography align="center">
                 No image at this location (150m radius).
@@ -71,10 +83,6 @@ export default function InfoDrawer(props) {
             )}
           </Box>
           <Box my={4}>
-            <Typography paragraph variant="h6" align="center">
-              Väginformation
-            </Typography>
-
             <TableContainer>
               <Table>
                 <TableHead>
@@ -122,11 +130,11 @@ export default function InfoDrawer(props) {
                   <Row
                     colored
                     l="Mätdatum"
-                    r={`${road.Myear}-${road.Mmonth}-${road.Mday}`}
+                    r={datestr(road.Myear, road.Mmonth, road.Mday)}
                   />
                   <Row
                     l="Beläggningsdatum"
-                    r={`${road.Byear}-${road.Bmonth}-${road.Bday}`}
+                    r={datestr(road.Byear, road.Bmonth, road.Bday)}
                   />
                   <Row
                     colored
