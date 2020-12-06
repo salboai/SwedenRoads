@@ -62,7 +62,7 @@ function writearray(features) {
       i += 1;
       buf.writeInt16LE(safe(features[n].properties["Trfkkls"]), i * bs);
       i += 1;
-      buf.writeInt16LE(safe(features[n].properties["IRI_ndr"]), i * bs);
+      buf.writeInt16LE(safe(Math.round(100*features[n].properties["IRI_ndr"])), i * bs);
       i += 1;
       buf.writeInt16LE(safe(features[n].properties["Sprdjp_"]), i * bs);
       i += 1;

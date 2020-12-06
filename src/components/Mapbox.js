@@ -68,68 +68,66 @@ function slice2longlats(v) {
 function parsecollection(collection) {
   let coords = collection[0];
   let lengths = collection[1];
-  let featureproperties = collection[2];
-  let Nproperties = 31; //MAKE SURE THIS IS SAME AS IN featurecollection2properties.js
-  console.log("Totalt antal vägar: ", lengths.length);
-
-  let source = {
-    type: "geojson",
-    //generateId: true,
-    data: { type: "FeatureCollection", features: [] },
-  };
+  let props = collection[2];
+  let Nfeatures = lengths.length;
+  let Nprops = 31; //MAKE SURE THIS IS SAME AS IN featurecollection2properties.js
+  console.log("Totalt antal features: ", Nfeatures);
 
   let i = 0;
   let len = 0;
-  let featurecoordinates = [];
+  let features = new Array(Nfeatures);
 
-  for (let featureid = 0; featureid < lengths.length; featureid++) {
-    //for (let featureid = 0; featureid < 1000; featureid++) {
-    len = lengths[featureid] * 2; //2 numbers per feature coord
-    featurecoordinates = slice2longlats(coords.slice(i, i + len));
-    source.data.features.push({
+  for (let id = 0; id < Nfeatures; id++) {
+    len = lengths[id] * 2; //2 numbers per feature coord
+
+    features[id] = {
       type: "Feature",
-      id: `${featureid}`,
+      id: id,
       properties: {
-        id: `${featureid}`,
-        ÅtrstnL: featureproperties[featureid * Nproperties],
-        Hastght: featureproperties[featureid * Nproperties + 1],
-        DoU2017: featureproperties[featureid * Nproperties + 2],
-        ÅDT_tng: featureproperties[featureid * Nproperties + 3],
-        ÅDT_mtr: featureproperties[featureid * Nproperties + 4],
-        Vägnmmr: featureproperties[featureid * Nproperties + 5],
-        Vägktgr: featureproperties[featureid * Nproperties + 6],
-        Vägtyp: featureproperties[featureid * Nproperties + 7],
-        Längd: featureproperties[featureid * Nproperties + 8],
-        Blggnngst: featureproperties[featureid * Nproperties + 9],
-        Län_nr: featureproperties[featureid * Nproperties + 10],
-        Kmmn_nr: featureproperties[featureid * Nproperties + 11],
-        Trfkkls: featureproperties[featureid * Nproperties + 12],
-        IRI_ndr: featureproperties[featureid * Nproperties + 13],
-        Sprdjp_: featureproperties[featureid * Nproperties + 14],
-        Region: featureproperties[featureid * Nproperties + 15],
-        Ålder: featureproperties[featureid * Nproperties + 16],
-        FrvntdL: featureproperties[featureid * Nproperties + 17],
-        TllstnI: featureproperties[featureid * Nproperties + 18],
-        IndxKls: featureproperties[featureid * Nproperties + 19],
-        ÅDT_frd: featureproperties[featureid * Nproperties + 20] * 10,
-        Spårdjp: featureproperties[featureid * Nproperties + 21] / 100,
-        IRI: featureproperties[featureid * Nproperties + 22] / 100,
-        Vägbrdd: featureproperties[featureid * Nproperties + 23] / 100,
-        Brghtsk: featureproperties[featureid * Nproperties + 24],
-        Byear: featureproperties[featureid * Nproperties + 25],
-        Bmonth: featureproperties[featureid * Nproperties + 26],
-        Bday: featureproperties[featureid * Nproperties + 27],
-        Myear: featureproperties[featureid * Nproperties + 28],
-        Mmonth: featureproperties[featureid * Nproperties + 29],
-        Mday: featureproperties[featureid * Nproperties + 30],
+        ÅtrstnL: props[id * Nprops],
+        Hastght: props[id * Nprops + 1],
+        DoU2017: props[id * Nprops + 2],
+        ÅDT_tng: props[id * Nprops + 3],
+        ÅDT_mtr: props[id * Nprops + 4],
+        Vägnmmr: props[id * Nprops + 5],
+        Vägktgr: props[id * Nprops + 6],
+        Vägtyp: props[id * Nprops + 7],
+        Längd: props[id * Nprops + 8],
+        Blggnngst: props[id * Nprops + 9],
+        Län_nr: props[id * Nprops + 10],
+        Kmmn_nr: props[id * Nprops + 11],
+        Trfkkls: props[id * Nprops + 12],
+        IRI_ndr: props[id * Nprops + 13] / 100,
+        Sprdjp_: props[id * Nprops + 14],
+        Region: props[id * Nprops + 15],
+        Ålder: props[id * Nprops + 16],
+        FrvntdL: props[id * Nprops + 17],
+        TllstnI: props[id * Nprops + 18],
+        IndxKls: props[id * Nprops + 19],
+        ÅDT_frd: props[id * Nprops + 20] * 10,
+        Spårdjp: props[id * Nprops + 21] / 100,
+        IRI: props[id * Nprops + 22] / 100,
+        Vägbrdd: props[id * Nprops + 23] / 100,
+        Brghtsk: props[id * Nprops + 24],
+        Byear: props[id * Nprops + 25],
+        Bmonth: props[id * Nprops + 26],
+        Bday: props[id * Nprops + 27],
+        Myear: props[id * Nprops + 28],
+        Mmonth: props[id * Nprops + 29],
+        Mday: props[id * Nprops + 30],
       },
       geometry: {
         type: "LineString",
-        coordinates: featurecoordinates,
+        coordinates: slice2longlats(coords.slice(i, i + len)),
       },
-    });
+    };
     i += len;
   }
+
+  const source = {
+    type: "geojson",
+    data: { type: "FeatureCollection", features: features },
+  };
   return source;
 }
 
