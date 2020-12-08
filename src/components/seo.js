@@ -26,8 +26,9 @@ const SEO = ({ title, description, image, article }) => {
 
   const ogtitle = title ? `${seo.title} · ${defaultTitle}` : defaultTitle;
 
+  //<Helmet title={seo.title} titleTemplate={titleTemplate}>
   return (
-    <Helmet title={seo.title} titleTemplate={titleTemplate}>
+    <Helmet title={ogtitle}>
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
       {seo.url && <meta property="og:url" content={seo.url} />}
