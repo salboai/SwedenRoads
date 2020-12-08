@@ -1,22 +1,16 @@
 import React from "react";
-import {
-  Container,
-  Divider,
-  Drawer,
-  Typography,
-  Button,
-  Box,
-  Grid,
-} from "@material-ui/core";
+import { Container, Drawer, Typography, Box } from "@material-ui/core";
 import MapillaryBox from "./MapillaryBox";
+import {
+  Table,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableContainer,
+  TableCell,
+} from "@material-ui/core";
 
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import SvgCircle from "./SvgCircle";
 
 function isnotempty(obj) {
   for (var prop in obj) {
@@ -25,7 +19,7 @@ function isnotempty(obj) {
   return false;
 }
 
-const palette = ["#FF0000", "#FF8000", "#FFFF00", "#9FCC00", "#00CC00"];
+const palette = ["#C40A3B", "#F2203E", "#FABF20", "#71C94B", "#20AC65", "#ccc"];
 
 const T = (props) => {
   return (
@@ -34,11 +28,12 @@ const T = (props) => {
     </Typography>
   );
 };
+
 function Row(props) {
   return (
     <TableRow
       style={
-        props.colored ? { background: "lightblue" } : { background: "white" }
+        props.colored ? { background: "#F4F4F2" } : { background: "white" }
       }
     >
       <TableCell component="th" scope="row">
@@ -95,7 +90,12 @@ export default function InfoDrawer(props) {
                   <Row
                     colored
                     l="Indexklass"
-                    r={translate("IndxKls", road.IndxKls)}
+                    r={
+                      <Box display="flex" justifyContent="flex-end">
+                        <SvgCircle color={palette[road.IndxKls - 1]} />
+                        {translate("IndxKls", road.IndxKls)}
+                      </Box>
+                    }
                   />
                   {/*<Row l="ID" r={road.id} />*/}
                   <Row

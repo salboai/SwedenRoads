@@ -133,38 +133,6 @@ function parsecollection(collection) {
 }
 
 const layerpaint = {
-  "line-width": {
-    base: 1,
-    stops: [
-      [8, 1],
-      [9, 2],
-      [10, 4],
-      [11, 8],
-      [12, 16],
-      [13, 16],
-      [14, 16],
-    ],
-  },
-  "line-color": [
-    "match",
-    ["get", "IndxKls"],
-    1,
-    "#FF0000",
-    2,
-    "#FF8000",
-    3,
-    "#FFFF00",
-    4,
-    "#9FCC00",
-    5,
-    "#00CC00",
-    "#ccc", //other
-  ],
-};
-
-//"case",
-//["boolean", ["feature-state", "hover"], false],
-const layerpaint2 = {
   "line-width": ["case", ["boolean", ["feature-state", "hover"], false], 15, 5],
   "line-color": [
     "match",
@@ -294,7 +262,7 @@ export default class Mapbox extends React.Component {
         "line-cap": "round",
         //visibility: "none",
       },
-      paint: layerpaint2,
+      paint: layerpaint,
     });
 
     let el = document.createElement("div");

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import * as Mapillary from "mapillary-js";
-import { Box, Typography } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import "../css/mapillary-js.css";
 
 export default function MapillaryBox(props) {

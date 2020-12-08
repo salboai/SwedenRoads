@@ -41,7 +41,7 @@ function writearray(features) {
       buf.writeInt16LE(safe(features[n].properties["Hastght"]), i * bs);
       i += 1;
       buf.writeInt16LE(safe(features[n].properties["DoU2017"]), i * bs);
-      i += 1; 
+      i += 1;
       buf.writeInt16LE(safe(features[n].properties["ÅDT_tng"]), i * bs);
       i += 1;
       buf.writeInt16LE(safe(features[n].properties["ÅDT_mtr"]), i * bs);
@@ -62,7 +62,10 @@ function writearray(features) {
       i += 1;
       buf.writeInt16LE(safe(features[n].properties["Trfkkls"]), i * bs);
       i += 1;
-      buf.writeInt16LE(safe(Math.round(10*features[n].properties["IRI_ndr"])), i * bs);
+      buf.writeInt16LE(
+        safe(Math.round(10 * features[n].properties["IRI_ndr"])),
+        i * bs
+      );
       i += 1;
       buf.writeInt16LE(safe(features[n].properties["Sprdjp_"]), i * bs);
       i += 1;
@@ -72,7 +75,7 @@ function writearray(features) {
       i += 1;
       buf.writeInt16LE(safe(features[n].properties["FrvntdL"]), i * bs);
       i += 1;
-      
+
       buf.writeInt16LE(safe(features[n].properties["TllstnI"]), i * bs);
       i += 1;
       buf.writeInt16LE(safe(features[n].properties["IndxKls"]), i * bs);
@@ -80,7 +83,10 @@ function writearray(features) {
 
       //this guy has some items (1139 to be exact) larger than int16 (and even larger than uint16).
       //max is 141420, int16 has max 32767. so divide by 10 to fit, losing one digit of precision this way.
-      buf.writeInt16LE(safe(Math.round(features[n].properties["ÅDT_frd"] / 10)), i * bs);
+      buf.writeInt16LE(
+        safe(Math.round(features[n].properties["ÅDT_frd"] / 10)),
+        i * bs
+      );
       i += 1;
 
       //deal with some float properties (x100 and save as ints. divide later on website)
