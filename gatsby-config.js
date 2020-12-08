@@ -2,9 +2,9 @@ module.exports = {
   siteMetadata: {
     defaultTitle: `Sweden Roads`,
     titleTemplate: "%s · Sweden Roads",
-    defaultDescription: `Färgkodad Karta över framtida underhållsbehov av Sveriges vägar.`,
+    defaultDescription: `Väginformation, Karta och Underhållsbehov av Sveriges vägar.`,
     lang: `sv`,
-    siteUrl: 'https://swedenroads.netlify.app',
+    siteUrl: 'https://swedenroads.salbo.ai',
     defaultImage: 'andyfx',
     author: 'Anders Gustafsson',
   },
