@@ -28,6 +28,7 @@ async function fetchcollection() {
   //let url1 = "/coordinates.f32array";
   //let url2 = "/lengths.uint16array";
   //let url3 = "/properties.int16array";
+
   let url1 =
     "https://storage.googleapis.com/swedenroads/coordinates2020.f32array";
   let url2 =
@@ -97,7 +98,7 @@ function parsecollection(collection) {
         Län_nr: props[id * Nprops + 10],
         Kmmn_nr: props[id * Nprops + 11],
         Trfkkls: props[id * Nprops + 12],
-        IRI_ndr: props[id * Nprops + 13] / 100,
+        IRI_ndr: props[id * Nprops + 13] / 10,
         Sprdjp_: props[id * Nprops + 14],
         Region: props[id * Nprops + 15],
         Ålder: props[id * Nprops + 16],
@@ -169,15 +170,15 @@ const layerpaint2 = {
     "match",
     ["get", "IndxKls"],
     1,
-    "#FF0000",
+    "#C40A3B",
     2,
-    "#FF8000",
+    "#F2203E",
     3,
-    "#FFFF00",
+    "#FABF20",
     4,
-    "#9FCC00",
+    "#71C94B",
     5,
-    "#00CC00",
+    "#20AC65",
     "#ccc", //other
   ],
 };
@@ -319,19 +320,15 @@ export default class Mapbox extends React.Component {
       return (
         <>
           {this.state.isfetching && (
-            <>
-              <Typography variant="body1" align="center" component="span">
-                Hämtar komprimerad data (30MB){" "}
-                <CircularProgress color="secondary" />
-              </Typography>
-            </>
+            <Typography variant="body1" align="center" component="span">
+              Hämtar komprimerad data (30MB){" "}
+              <CircularProgress color="secondary" />
+            </Typography>
           )}
           {this.state.isunpacking && (
-            <>
-              <Typography variant="body1" align="center" component="span">
-                Packar upp data <CircularProgress />
-              </Typography>
-            </>
+            <Typography variant="body1" align="center" component="span">
+              Packar upp data <CircularProgress />
+            </Typography>
           )}
           <div
             style={{
