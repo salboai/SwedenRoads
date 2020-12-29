@@ -46,8 +46,9 @@ function makeproperties(v) {
 }
 
 async function fetchproperties() {
-  let url = "/properties2020.int16array";
-  //let url = "https://storage.googleapis.com/swedenroads/properties2020.int16array";
+  //let url = "/properties2020.int16array";
+  let url =
+    "https://storage.googleapis.com/swedenroads/properties2020.int16array";
 
   const collection = await fetch(url)
     .then((res) => res.arrayBuffer())
