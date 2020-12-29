@@ -12,6 +12,7 @@
     "mapillary-js": "^2.21.0",
     "react": "latest",
     "react-dom": "latest",
+    "react-fetch-hook": "^1.8.5",
     "react-helmet": "latest"
   },
   "scripts": {

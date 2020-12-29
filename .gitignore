@@ -7,3 +7,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/static/coordinates2020.f32array
+/static/lengths2020.uint16array
+/static/properties2020.int16array
+/static/indexKls2020.uint8array

@@ -1,3 +1,24 @@
+.feedback {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.maincontainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.togglebutton {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-bottom-left-radius: 10px;
+  z-index: 999;
+}
 .marker {
   background-image: url("pin.png");
   background-size: cover;
