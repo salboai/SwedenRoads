@@ -31,11 +31,11 @@ function writearray(features) {
   for (let n = 0; n < features.length; n++) {
     if (features[n].geometry !== null) {
       //write in Little-Endian format, at offset
-      //here goes Nproperties number of buf.write calls. 
+      //here goes Nproperties number of buf.write calls.
 
       buf.writeUInt8(safe(features[n].properties["IndxKls"]), i * bs);
       i += 1;
-      buf.writeUInt8(safe(features[n].properties["IndxKls"]), i * bs);
+      buf.writeUInt8(safe(features[n].properties["IndK2030"]), i * bs);
       i += 1;
 
       console.log("done: ", n);

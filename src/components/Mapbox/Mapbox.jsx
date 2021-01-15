@@ -24,7 +24,7 @@ const linecolor1 = [
 
 const linecolor2 = [
   "match",
-  ["get", "IndxKls2"],
+  ["get", "IndK2030"],
   1,
   "#C40A3B",
   2,

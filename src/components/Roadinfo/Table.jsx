@@ -35,6 +35,15 @@ export default function Table({ p }) {
             {translate("IndxKls", p.IndxKls)}
           </Box>
         }
+      />
+      <Row
+        l="Klassifikation2030"
+        r={
+          <Box display="flex">
+            <Svgcircle color={palette[p.IndK2030 - 1]} />
+            {translate("IndxKls", p.IndK2030)}
+          </Box>
+        }
         colored
       />
       <Row l="Kategori" r={translate("Vägktgr", p.Vägktgr)} />

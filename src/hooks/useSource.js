@@ -1,6 +1,7 @@
 import usePromise from "react-fetch-hook/usePromise";
 
 function slice2longlats(v) {
+  // v=[1,2,3,4,5,6] => [[1,2],[3,4],[5,6]]
   let longlats = [];
   for (let i = 0; i < v.length; i += 2) {
     longlats.push([v[i], v[i + 1]]);
@@ -28,8 +29,8 @@ function makesource(collection) {
       id: id,
       properties: {
         IndxKls: props[id * Nprops],
-        //IndxKls2: props[id * Nprops + 1],
-        IndxKls2: 1, //debug with all red future
+        IndK2030: props[id * Nprops + 1],
+        //IndK2030: 1, //debug with all red future
       },
       geometry: {
         type: "LineString",
@@ -48,15 +49,15 @@ function makesource(collection) {
 }
 
 async function fetchsource() {
-  //let url1 = "/coordinates2020.f32array";
-  //let url2 = "/lengths2020.uint16array";
-  //let url3 = "/indexKls2020.uint8array";
-  let url1 =
-    "https://storage.googleapis.com/swedenroads/coordinates2020.f32array";
-  let url2 =
-    "https://storage.googleapis.com/swedenroads/lengths2020.uint16array";
-  let url3 =
-    "https://storage.googleapis.com/swedenroads/indexKls2020.uint8array";
+  //debug by placing arrays in the static folder
+  //let url1 = "/coordinates2020v3.f32array";
+  //let url2 = "/lengths2020v3.uint16array";
+  //let url3 = "/indexKls2020v3.uint8array";
+
+  const baseurl = "https://storage.googleapis.com/swedenroads";
+  let url1 = `${baseurl}/coordinates2020v3.f32array`;
+  let url2 = `${baseurl}/lengths2020v3.uint16array`;
+  let url3 = `${baseurl}/indexKls2020v3.uint8array`;
 
   const collection = await Promise.all([
     fetch(url1)

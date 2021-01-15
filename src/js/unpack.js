@@ -26,7 +26,7 @@ export function makesource(collection) {
       id: id,
       properties: {
         IndxKls: props[id * Nprops],
-        IndxKls2: props[id * Nprops + 1],
+        IndK2030: props[id * Nprops + 1],
       },
       geometry: {
         type: "LineString",

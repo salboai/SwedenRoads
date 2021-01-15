@@ -50,7 +50,13 @@ export default function Imgbox(props) {
           <Typography variant="caption">No image available</Typography>
         </Box>
       )}
-      {image && <Typography variant="caption">{image.capturedate}</Typography>}
+      {image && (
+        <Box width={410} display="flex" justifyContent="center">
+          <Typography variant="caption" align="center">
+            Bild tagen: {image.capturedate}
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 }
