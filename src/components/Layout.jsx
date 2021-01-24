@@ -6,8 +6,6 @@ import Roadinfo from "./Roadinfo";
 import useSource from "../hooks/useSource";
 import useProperties from "../hooks/useProperties";
 
-import Searchbar from "./Searchbar";
-
 async function fetchNearbyImages(longlat, radius = 150) {
   //https://www.mapillary.com/developer/api-documentation/#the-image-object
   const MapillaryClientID = process.env.GATSBY_MAPILLARY_CLIENTID;
@@ -57,7 +55,6 @@ export default function Layout(props) {
 
   return (
     <Box position="relative">
-      <Searchbar />
       <Roadinfo road={road} features={features} />
       <Mapbox
         ref={mbref}

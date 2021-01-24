@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+
 import { TextField } from "@material-ui/core";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 async function fetchplaces(str) {
   const token = process.env.GATSBY_MAPBOX_ACCESS_TOKEN;
@@ -8,20 +10,58 @@ async function fetchplaces(str) {
   const query = `${str}.json?autocomplete=true&country=se&access_token=${token}`;
   const url = `${baseurl}${query}`;
   const data = await fetch(url).then((res) => res.json());
-  console.log("data: ", data);
   return data;
 }
 
-export default function Searchbar() {
+export default function Searchbar(props) {
   const [tag, setTag] = useState("");
+  const [selected, setSelected] = useState("");
+  const [places, setPlaces] = useState([]);
 
-  const handleChange = (e) => {
-    const q = e.target.value;
-    setTag(q);
-    fetchplaces(q).then((data) => {
-      console.log("then data: ", data);
+  const handleTag = (e, v) => {
+    setTag(v);
+    fetchplaces(v).then((data) => {
+      if (data.features) {
+        setPlaces(data.features);
+      } else {
+        setPlaces([]);
+      }
     });
   };
 
-  return <TextField label="Sök" value={tag} onChange={handleChange} />;
+  const handleSelected = (e, v) => {
+    setSelected(v);
+    const p = places[e.target.dataset.optionIndex];
+    props.fitBounds(p.bbox);
+    /*
+    props.fitBounds([
+      [32.958984, -5.353521],
+      [43.50585, 5.615985],
+    ]);
+    */
+
+    console.log("selected place: ", p);
+  };
+
+  return (
+    <Autocomplete
+      inputValue={tag}
+      onInputChange={handleTag}
+      value={selected}
+      onChange={handleSelected}
+      freeSolo
+      id="search-place"
+      disableClearable
+      options={places.map((place) => place.place_name)}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Sök plats"
+          margin="normal"
+          variant="outlined"
+          InputProps={{ ...params.InputProps, type: "search" }}
+        />
+      )}
+    />
+  );
 }

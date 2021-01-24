@@ -5,6 +5,7 @@ import { Box, Typography } from "@material-ui/core";
 import { FormControlLabel, Switch } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import "./Mapbox.css";
+import Searchbar from "../Searchbar";
 
 const linecolor1 = [
   "match",
@@ -46,13 +47,13 @@ const defaultpaint = {
 export default class Mapbox extends React.Component {
   constructor(props) {
     super(props);
-    this.mapref = React.createRef();
+    this.contaiinerref = React.createRef();
     this.hoveredID = null;
     this.state = {
       center: [16.5509, 59.6368], //västerås
       zoom: 8.37,
-      minZoom: 4.0,
-      maxZoom: 17.0,
+      //minZoom: 4.0,
+      //maxZoom: 17.0,
       showingfuture: false,
     };
   }
@@ -60,19 +61,17 @@ export default class Mapbox extends React.Component {
   componentDidMount() {
     mapboxgl.accessToken = process.env.GATSBY_MAPBOX_ACCESS_TOKEN;
     this.map = new mapboxgl.Map({
-      container: this.mapref.current,
+      container: this.contaiinerref.current,
       style: `mapbox://styles/mapbox/light-v9`,
       center: this.state.center,
       zoom: this.state.zoom,
-      minZoom: this.state.minZoom,
-      maxZoom: this.state.maxZoom,
+      //minZoom: this.state.minZoom,
+      //maxZoom: this.state.maxZoom,
       attributionControl: false,
     });
 
-    this.map.on("load", () => {
-      //let source = makesource(collection);
-      //this.createsource(id, source);
-    });
+    /*this.map.on("load", () => {
+    });*/
 
     this.map.on("mousemove", (e) => {
       var mousefeatures = this.map.queryRenderedFeatures(e.point);
@@ -121,22 +120,25 @@ export default class Mapbox extends React.Component {
         }
       }
 
-      //and call a function that was passed down, also move the marker
+      //move marker and call a function in parent
       if (clickedonroad) {
         this.placemarker(e.lngLat);
-        //mousefeatures[ind].id
-        //mousefeatures[ind].properties.IndxKls
-        //mousefeatures[ind].properties.IndxKls2
         this.props.onRoadclick(e.lngLat, mousefeatures[ind].id);
-        //console.log("mousefeatures[ind]: ", mousefeatures[ind]);
-        //this.props.roadclicked(mousefeatures[ind])
-        //call some function and/or set some reduxstate here
       } else {
         this.placemarker([0, 0]);
         this.props.onRoadclick(e.lngLat, -1);
-        //call some function and/or set some reduxstate here
       }
     });
+
+    const fitBounds = (bbox) => {
+      //https://docs.mapbox.com/mapbox-gl-js/example/fitbounds/
+      if (this.map) {
+        this.map.fitBounds(bbox);
+      } else {
+        console.log("no this.map");
+      }
+    };
+    this.setState({ fitBounds: fitBounds });
   }
 
   togglepaint() {
@@ -193,7 +195,7 @@ export default class Mapbox extends React.Component {
       return (
         <Box className="maincontainer">
           <Box
-            ref={this.mapref}
+            ref={this.contaiinerref}
             position="absolute"
             style={{ width: "100%", height: "100%" }}
           />
@@ -216,6 +218,7 @@ export default class Mapbox extends React.Component {
                 }
                 label="Visa Framtid"
               />
+              {<Searchbar fitBounds={this.state.fitBounds} />}
             </Box>
           )}
         </Box>
