@@ -50,10 +50,6 @@ export default class Mapbox extends React.Component {
     this.contaiinerref = React.createRef();
     this.hoveredID = null;
     this.state = {
-      center: [16.5509, 59.6368], //västerås
-      zoom: 8.37,
-      //minZoom: 4.0,
-      //maxZoom: 17.0,
       showingfuture: false,
     };
   }
@@ -63,10 +59,10 @@ export default class Mapbox extends React.Component {
     this.map = new mapboxgl.Map({
       container: this.contaiinerref.current,
       style: `mapbox://styles/mapbox/light-v9`,
-      center: this.state.center,
-      zoom: this.state.zoom,
-      //minZoom: this.state.minZoom,
-      //maxZoom: this.state.maxZoom,
+      center: [16.5509, 59.6368], //västerås
+      zoom: 8.37,
+      minZoom: 4.0,
+      maxZoom: 17.0,
       attributionControl: false,
     });
 
@@ -132,13 +128,19 @@ export default class Mapbox extends React.Component {
 
     const fitBounds = (bbox) => {
       //https://docs.mapbox.com/mapbox-gl-js/example/fitbounds/
-      if (this.map) {
-        this.map.fitBounds(bbox);
-      } else {
-        console.log("no this.map");
-      }
+      this.map.fitBounds(bbox);
     };
-    this.setState({ fitBounds: fitBounds });
+
+    const flyTo = (center) => {
+      //https://docs.mapbox.com/mapbox-gl-js/example/flyto/
+      this.map.flyTo({
+        center: center,
+        zoom: 14, //just pick some pretty close up zoom for points
+        //essential: true,
+      });
+    };
+
+    this.setState({ fitBounds: fitBounds, flyTo: flyTo });
   }
 
   togglepaint() {
@@ -194,6 +196,10 @@ export default class Mapbox extends React.Component {
     } else {
       return (
         <Box className="maincontainer">
+          <Searchbar
+            fitBounds={this.state.fitBounds}
+            flyTo={this.state.flyTo}
+          />
           <Box
             ref={this.contaiinerref}
             position="absolute"
@@ -218,7 +224,6 @@ export default class Mapbox extends React.Component {
                 }
                 label="Visa Framtid"
               />
-              {<Searchbar fitBounds={this.state.fitBounds} />}
             </Box>
           )}
         </Box>

@@ -13,46 +13,53 @@ async function fetchplaces(str) {
   return data;
 }
 
+function vec2obj(vec) {
+  //with place_name as key
+  let obj = {};
+  for (let i = 0; i < vec.length; i++) {
+    obj[vec[i].place_name] = vec[i];
+  }
+  return obj;
+}
+
 export default function Searchbar(props) {
   const [tag, setTag] = useState("");
   const [selected, setSelected] = useState("");
-  const [places, setPlaces] = useState([]);
+  const [places, setPlaces] = useState({});
 
   const handleTag = (e, v) => {
     setTag(v);
     fetchplaces(v).then((data) => {
       if (data.features) {
-        setPlaces(data.features);
+        setPlaces(vec2obj(data.features));
       } else {
-        setPlaces([]);
+        console.log("places dont have features");
+        setPlaces({});
       }
     });
   };
 
   const handleSelected = (e, v) => {
+    const p = places[v];
     setSelected(v);
-    const p = places[e.target.dataset.optionIndex];
-    props.fitBounds(p.bbox);
-    /*
-    props.fitBounds([
-      [32.958984, -5.353521],
-      [43.50585, 5.615985],
-    ]);
-    */
-
-    console.log("selected place: ", p);
+    if (p.bbox) {
+      //some places such as municipalities have a bounding box. nice.
+      props.fitBounds(p.bbox);
+    } else {
+      props.flyTo(p.center);
+    }
   };
 
   return (
     <Autocomplete
-      inputValue={tag}
+      inputValue={tag} //the typed text
       onInputChange={handleTag}
-      value={selected}
+      value={selected} //the selected option
       onChange={handleSelected}
       freeSolo
       id="search-place"
       disableClearable
-      options={places.map((place) => place.place_name)}
+      options={Object.keys(places)}
       renderInput={(params) => (
         <TextField
           {...params}
@@ -65,3 +72,14 @@ export default function Searchbar(props) {
     />
   );
 }
+
+/*
+onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          //console.log("pressed enter. selected is now: ", selected);
+          //console.log("pressed enter. e: ", e);
+          console.log("pressed enter. ind: ", e.target.dataset.optionIndex);
+          //setAutoCompleteValue(autoCompleteValue.concat(e.target.value));
+        }
+      }}
+      */
