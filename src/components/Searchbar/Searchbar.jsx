@@ -74,14 +74,3 @@ export default function Searchbar(props) {
     />
   );
 }
-
-/*
-onKeyDown={(e) => {
-        if (e.key === "Enter") {
-          //console.log("pressed enter. selected is now: ", selected);
-          //console.log("pressed enter. e: ", e);
-          console.log("pressed enter. ind: ", e.target.dataset.optionIndex);
-          //setAutoCompleteValue(autoCompleteValue.concat(e.target.value));
-        }
-      }}
-      */

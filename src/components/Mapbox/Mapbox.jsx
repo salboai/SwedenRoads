@@ -59,9 +59,9 @@ export default class Mapbox extends React.Component {
     this.map = new mapboxgl.Map({
       container: this.contaiinerref.current,
       style: `mapbox://styles/mapbox/light-v9`,
-      center: [16.5509, 59.6368], //västerås
-      zoom: 8.37,
-      minZoom: 4.0,
+      center: [16.5509, 59.6368], //some initial location (västerås)
+      zoom: 12, //some initial zoom
+      minZoom: 4.0, //this covers entire sweden
       maxZoom: 17.0,
       attributionControl: false,
     });
@@ -135,7 +135,7 @@ export default class Mapbox extends React.Component {
       //https://docs.mapbox.com/mapbox-gl-js/example/flyto/
       this.map.flyTo({
         center: center,
-        zoom: 14, //just pick some pretty close up zoom for points
+        zoom: 14, //a pretty close up zoom for searched points that dont have bounding boxes
         //essential: true,
       });
     };
@@ -158,7 +158,7 @@ export default class Mapbox extends React.Component {
       //for debug and reload purpose
       console.log("source already exists, not adding");
     } else {
-      console.log("now adding source to this.map");
+      //console.log("now adding source to this.map");
       this.map.addSource(id, source);
 
       this.map.addLayer({
