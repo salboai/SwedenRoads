@@ -196,10 +196,6 @@ export default class Mapbox extends React.Component {
     } else {
       return (
         <Box className="maincontainer">
-          <Searchbar
-            fitBounds={this.state.fitBounds}
-            flyTo={this.state.flyTo}
-          />
           <Box
             ref={this.contaiinerref}
             position="absolute"
@@ -226,6 +222,10 @@ export default class Mapbox extends React.Component {
               />
             </Box>
           )}
+          <Searchbar
+            fitBounds={this.state.fitBounds}
+            flyTo={this.state.flyTo}
+          />
         </Box>
       );
     }

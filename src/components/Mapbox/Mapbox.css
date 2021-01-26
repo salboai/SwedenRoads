@@ -15,10 +15,11 @@
 .togglebutton {
   position: absolute;
   right: 0;
-  top: 0;
-  border-bottom-left-radius: 10px;
-  z-index: 999;
+  bottom: 0;
+  border-top-left-radius: 10px;
+  z-index: 3;
 }
+
 .marker {
   background-image: url("pin.png");
   background-size: cover;

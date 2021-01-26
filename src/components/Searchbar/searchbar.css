@@ -1,0 +1,13 @@
+.autocomplete {
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  width: 410px;
+  z-index: 3;
+  /*background-color: rgba(255, 255, 255, 0.6);*/
+}
+
+.textfield {
+  background-color: rgba(0, 0, 0, 0);
+  background-color: #fff;
+}

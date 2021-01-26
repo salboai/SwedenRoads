@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 import { TextField } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import "./searchbar.css";
 
 async function fetchplaces(str) {
   const token = process.env.GATSBY_MAPBOX_ACCESS_TOKEN;
-  //const token = "pk.eyJ1Ijoic2FsYm9haSIsImEiOiJja2Nldjl3bjcwYzZsMnJwYzFrNnF1YTIwIn0.P9sRvGp848IlDhyJPKTw0Q"
   const baseurl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
   const query = `${str}.json?autocomplete=true&country=se&access_token=${token}`;
   const url = `${baseurl}${query}`;
@@ -52,6 +52,7 @@ export default function Searchbar(props) {
 
   return (
     <Autocomplete
+      className="autocomplete"
       inputValue={tag} //the typed text
       onInputChange={handleTag}
       value={selected} //the selected option
@@ -62,6 +63,7 @@ export default function Searchbar(props) {
       options={Object.keys(places)}
       renderInput={(params) => (
         <TextField
+          className="textfield"
           {...params}
           label="Sök plats"
           margin="normal"
