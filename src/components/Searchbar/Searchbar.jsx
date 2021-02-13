@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { TextField } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./searchbar.css";
@@ -29,14 +28,19 @@ export default function Searchbar(props) {
 
   const handleTag = (e, v) => {
     setTag(v);
-    fetchplaces(v).then((data) => {
-      if (data.features) {
-        setPlaces(vec2obj(data.features));
-      } else {
-        console.log("places dont have features");
+    fetchplaces(v)
+      .then((data) => {
+        if (data.features) {
+          setPlaces(vec2obj(data.features));
+        } else {
+          console.log("places dont have features");
+          setPlaces({});
+        }
+      })
+      .catch((e) => {
+        console.log("couldnt fetch places");
         setPlaces({});
-      }
-    });
+      });
   };
 
   const handleSelected = (e, v) => {

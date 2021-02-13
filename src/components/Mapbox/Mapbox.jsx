@@ -51,6 +51,7 @@ export default class Mapbox extends React.Component {
     this.hoveredID = null;
     this.state = {
       showingfuture: false,
+      isloading: true,
     };
   }
 
@@ -58,7 +59,8 @@ export default class Mapbox extends React.Component {
     mapboxgl.accessToken = process.env.GATSBY_MAPBOX_ACCESS_TOKEN;
     this.map = new mapboxgl.Map({
       container: this.contaiinerref.current,
-      style: `mapbox://styles/mapbox/light-v9`,
+      //style: "mapbox://styles/mapbox/light-v9",
+      style: "mapbox://styles/mapbox/light-v10",
       center: [16.5509, 59.6368], //some initial location (västerås)
       zoom: 12, //some initial zoom
       minZoom: 4.0, //this covers entire sweden
@@ -126,6 +128,13 @@ export default class Mapbox extends React.Component {
       }
     });
 
+    this.map.on("sourcedata", () => {
+      if (this.state.isloading) {
+        console.log("source is added");
+        this.setState({ isloading: false });
+      }
+    });
+
     const fitBounds = (bbox) => {
       //https://docs.mapbox.com/mapbox-gl-js/example/fitbounds/
       this.map.fitBounds(bbox);
@@ -156,7 +165,7 @@ export default class Mapbox extends React.Component {
   addsource(id, source) {
     if (this.map.getSource("allroads")) {
       //for debug and reload purpose
-      console.log("source already exists, not adding");
+      console.log("source already exists, skipping adding it again");
     } else {
       //console.log("now adding source to this.map");
       this.map.addSource(id, source);
@@ -201,7 +210,7 @@ export default class Mapbox extends React.Component {
             position="absolute"
             style={{ width: "100%", height: "100%" }}
           />
-          {this.props.isloading ? (
+          {this.state.isloading ? (
             <Box className="feedback">
               <Box display="flex" flexDirection="column" alignItems="center">
                 <Typography>Hämtar data</Typography>

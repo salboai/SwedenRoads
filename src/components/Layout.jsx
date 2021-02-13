@@ -56,11 +56,7 @@ export default function Layout(props) {
   return (
     <Box position="relative">
       <Roadinfo road={road} features={features} />
-      <Mapbox
-        ref={mbref}
-        onRoadclick={onRoadclick}
-        isloading={source.isLoading}
-      />
+      <Mapbox ref={mbref} onRoadclick={onRoadclick} />
     </Box>
   );
 }
