@@ -21,7 +21,7 @@ function write_int16(buf, x, i, bs, factor = 1) {
 }
 
 function writearray(features) {
-  Nproperties = 32;
+  Nproperties = 34; //IMPORTANT (The number of properties to write each time. )
 
   let N = 0; //length of array
   for (let n = 0; n < features.length; n++) {
@@ -38,7 +38,7 @@ function writearray(features) {
     if (features[n].geometry !== null) {
       //write in Little-Endian format, at offset
 
-      //here goes Nproperties number of buf.write calls. (Nproperties is 31)
+      //here goes Nproperties number of buf.write calls.
       //always write in Little-Endian.
 
       //deal with decimals by multiplying and store ints.
@@ -91,6 +91,8 @@ function writearray(features) {
       i = write_int16(buf, Mday, i, bs);
 
       i = write_int16(buf, features[n].properties["IndK2030"], i, bs);
+      i = write_int16(buf, features[n].properties["IKls_2"], i, bs);
+      i = write_int16(buf, features[n].properties["IKls_3"], i, bs);
 
       console.log("done: ", n);
     }

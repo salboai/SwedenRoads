@@ -1,7 +1,7 @@
 import usePromise from "react-fetch-hook/usePromise";
 
 function makeproperties(v) {
-  let Nprops = 32; //MAKE SURE THIS IS SAME AS IN featurecollection2properties.js
+  let Nprops = 34; //MAKE SURE THIS IS SAME AS IN featurecollection2properties.js
   let Nfeatures = v.length / Nprops;
   console.log("Totalt antal features (makeproperties): ", Nfeatures);
 
@@ -40,6 +40,8 @@ function makeproperties(v) {
       Mmonth: v[id * Nprops + 29],
       Mday: v[id * Nprops + 30],
       IndK2030: v[id * Nprops + 31],
+      IKls_2: v[id * Nprops + 32],
+      IKls_3: v[id * Nprops + 33],
     };
   }
 
@@ -48,10 +50,10 @@ function makeproperties(v) {
 
 async function fetchproperties() {
   //debug by placing arrays in the static folder
-  //let url = "/properties2020v3.int16array";
+  //let url = "/properties.int16array";
 
   const baseurl = "https://storage.googleapis.com/swedenroads";
-  let url = `${baseurl}/properties2020v3.int16array`;
+  let url = `${baseurl}/properties.int16array`;
 
   const collection = await fetch(url)
     .then((res) => res.arrayBuffer())

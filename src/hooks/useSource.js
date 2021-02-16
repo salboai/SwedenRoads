@@ -14,7 +14,7 @@ function makesource(collection) {
   let lengths = collection[1];
   let props = collection[2];
   let Nfeatures = lengths.length;
-  let Nprops = 2; //MAKE SURE THIS IS SAME AS IN the datascript that generated it
+  let Nprops = 4; //MAKE SURE THIS IS SAME AS IN the datascript that generated it
   console.log("Total number of features: ", Nfeatures);
 
   let i = 0;
@@ -30,7 +30,8 @@ function makesource(collection) {
       properties: {
         IndxKls: props[id * Nprops],
         IndK2030: props[id * Nprops + 1],
-        //IndK2030: 1, //debug with all red future
+        IKls_2: props[id * Nprops + 2],
+        IKls_3: props[id * Nprops + 3],
       },
       geometry: {
         type: "LineString",
@@ -50,14 +51,14 @@ function makesource(collection) {
 
 async function fetchsource() {
   //debug by placing arrays in the static folder
-  //let url1 = "/coordinates2020v3.f32array";
-  //let url2 = "/lengths2020v3.uint16array";
-  //let url3 = "/indexKls2020v3.uint8array";
+  //let url1 = "/coordinates.f32array";
+  //let url2 = "/lengths.uint16array";
+  //let url3 = "/indexKls.uint8array";
 
   const baseurl = "https://storage.googleapis.com/swedenroads";
-  let url1 = `${baseurl}/coordinates2020v3.f32array`;
-  let url2 = `${baseurl}/lengths2020v3.uint16array`;
-  let url3 = `${baseurl}/indexKls2020v3.uint8array`;
+  let url1 = `${baseurl}/coordinates.f32array`;
+  let url2 = `${baseurl}/lengths.uint16array`;
+  let url3 = `${baseurl}/indexKls.uint8array`;
 
   const collection = await Promise.all([
     fetch(url1)

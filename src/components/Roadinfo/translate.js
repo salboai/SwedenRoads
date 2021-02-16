@@ -1,5 +1,5 @@
 export function translate(name, x) {
-  return translation[name][x] || x;
+  return translation[name][x] || "n/a";
 }
 
 export function datestr(y, m, d) {

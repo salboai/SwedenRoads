@@ -16,7 +16,7 @@ function safe(x) {
   return r;
 }
 function writearray(features) {
-  Nproperties = 2; //This file is only for indexKls and indexKls2
+  Nproperties = 4; //This file is only for indexKls, indexKls2, Ikls_2 and Ikls_3
 
   let N = 0; //length of array
   for (let n = 0; n < features.length; n++) {
@@ -37,6 +37,10 @@ function writearray(features) {
       i += 1;
       buf.writeUInt8(safe(features[n].properties["IndK2030"]), i * bs);
       i += 1;
+      buf.writeUInt8(safe(features[n].properties["IKls_2"]), i * bs);
+      i += 1;
+      buf.writeUInt8(safe(features[n].properties["IKls_3"]), i * bs);
+      i += 1;      
 
       console.log("done: ", n);
     }

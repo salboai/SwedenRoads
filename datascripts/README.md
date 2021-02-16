@@ -14,10 +14,12 @@ ogr2ogr -f GeoJSON -t_srs urn:ogc:def:crs:OGC::CRS84 featurecollection.json some
 
 ### step 2: .json -> typedarrays
 
+By default, node only allow a certain amount of memory usage. featurecollection.json is large so pass a --max-old-space-size (to allow 4 GB or whatever is necessary) flag when running.
+
 ```bash
-node featurecollection2indexKls.js
-node featurecollection2properties.js
-node featurecollection2typedarrays.js
+node --max-old-space-size=4096 featurecollection2indexKls.js
+node --max-old-space-size=4096 featurecollection2properties.js
+node --max-old-space-size=4096 featurecollection2typedarrays.js
 ```
 
 ### step 3: parse typedarrays clientside

@@ -44,6 +44,16 @@ console.log(collection.features[n+1].properties)
 */
 
 function examineprop(features) {
+	//examine what datatype to use for properties.
+
+	//summary (dec 2020): looks like int16 is the way to go. except for ÅDT_frd which sometimes exceed it but can get around it
+	//by loosing one digit of precision (aka store 123 as 12 and multiply by 10 when parsing to get back 120 etc but allow 10 times bigger numbers).
+	//ofc it would fit in int32 but would have to double data download (60MB instead of 30MB for properties)
+	//ideally one could use specialized datatypes for each and every property and download them individually (most would fit in a basic uint8 which would be fantastic, then we get down to 15MB instead of 500MB)
+	//or perhaps store everything in a byte buffer but parsing it clientside by sometimes reading int8, sometimes reading uint8 and sometimes uint32 etc
+	//that would allow a single fetch call but probably messy parsing.
+	//final note: The goal with all this bytewriting etc is ofc to avoid downloading a 500 MB json. Currently the coordinates take 30MB (f32) and properties 30MB (i32) as typedarrays.
+	
 	let min = features[0].properties["ÅDT_frd"]
 	let max = features[0].properties["ÅDT_frd"]
 	k = 0

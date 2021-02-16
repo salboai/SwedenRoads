@@ -46,6 +46,25 @@ export default function Table({ p }) {
         }
         colored
       />
+      <Row
+        l="Klassifikation2"
+        r={
+          <Box display="flex">
+            <Svgcircle color={palette[p.IKls_2 - 1]} />
+            {translate("IndxKls", p.IKls_2)}
+          </Box>
+        }
+      />
+      <Row
+        l="Klassifikation3"
+        r={
+          <Box display="flex">
+            <Svgcircle color={palette[p.IKls_3 - 1]} />
+            {translate("IndxKls", p.IKls_3)}
+          </Box>
+        }
+        colored
+      />
       <Row l="Kategori" r={translate("Vägktgr", p.Vägktgr)} />
       <Row l="Vägtyp" r={translate("Vägtyp", p.Vägtyp)} colored />
       <Row l="Hastighetsbegränsning" r={`${p.Hastght} km/h`} />
