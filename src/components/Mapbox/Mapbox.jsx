@@ -51,7 +51,8 @@ export default class Mapbox extends React.Component {
     this.hoveredID = null;
     this.state = {
       showingfuture: false,
-      isloading: true,
+      isLoading: true,
+      isIdle: false,
     };
   }
 
@@ -70,6 +71,11 @@ export default class Mapbox extends React.Component {
 
     /*this.map.on("load", () => {
     });*/
+
+    this.map.on("idle", () => {
+      //this seems be be the best way to actually listen for when layer has been added and painted.
+      this.setState({ isIdle: true });
+    });
 
     this.map.on("mousemove", (e) => {
       var mousefeatures = this.map.queryRenderedFeatures(e.point);
@@ -129,9 +135,9 @@ export default class Mapbox extends React.Component {
     });
 
     this.map.on("sourcedata", () => {
-      if (this.state.isloading) {
+      if (this.state.isLoading) {
         console.log("source is added");
-        this.setState({ isloading: false });
+        this.setState({ isLoading: false });
       }
     });
 
@@ -210,27 +216,34 @@ export default class Mapbox extends React.Component {
             position="absolute"
             style={{ width: "100%", height: "100%" }}
           />
-          {this.state.isloading ? (
+          {this.state.isLoading ? (
             <Box className="feedback">
               <Box display="flex" flexDirection="column" alignItems="center">
                 <Typography>Hämtar data</Typography>
                 <CircularProgress />
               </Box>
             </Box>
-          ) : (
-            <Box className="togglebutton" bgcolor="#fff" px={1} py={0.5}>
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={this.state.showingfuture}
-                    onChange={() => this.togglepaint()}
-                    name="checkedA"
-                  />
-                }
-                label="Visa Framtid"
-              />
+          ) : !this.state.isIdle ? (
+            <Box className="feedback">
+              <Box display="flex" flexDirection="column" alignItems="center">
+                <Typography>Bearbetar data</Typography>
+                <CircularProgress />
+              </Box>
             </Box>
-          )}
+          ) : null}
+          <Box className="togglebutton" bgcolor="#fff" px={1} py={0.5}>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={this.state.showingfuture}
+                  onChange={() => this.togglepaint()}
+                  name="checkedA"
+                />
+              }
+              label="Visa Framtid"
+            />
+          </Box>
+
           <Searchbar
             fitBounds={this.state.fitBounds}
             flyTo={this.state.flyTo}
