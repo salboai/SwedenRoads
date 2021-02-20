@@ -2,7 +2,6 @@
 import React from "react";
 import mapboxgl from "mapbox-gl";
 import { Box } from "@material-ui/core";
-import { FormControlLabel, Switch } from "@material-ui/core";
 import "./Mapbox.css";
 import Searchbar from "../Searchbar";
 import LoadingIndicator from "../LoadingIndicator";

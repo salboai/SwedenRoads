@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@material-ui/core";
-import { translate, datestr } from "./translate";
+import { translate, translatekey, datestr } from "./translate";
 import Svgcircle from "./Svgcircle";
 
 function Row(props) {
@@ -28,7 +28,7 @@ export default function Table({ p }) {
   return (
     <Box>
       <Row
-        l="Klassifikation"
+        l={translatekey("IndxKls")}
         r={
           <Box display="flex">
             <Svgcircle color={palette[p.IndxKls - 1]} />
@@ -37,7 +37,7 @@ export default function Table({ p }) {
         }
       />
       <Row
-        l="Klassifikation2030"
+        l={translatekey("IndK2030")}
         r={
           <Box display="flex">
             <Svgcircle color={palette[p.IndK2030 - 1]} />
@@ -47,7 +47,7 @@ export default function Table({ p }) {
         colored
       />
       <Row
-        l="Klassifikation2"
+        l={translatekey("IKls_2")}
         r={
           <Box display="flex">
             <Svgcircle color={palette[p.IKls_2 - 1]} />
@@ -56,7 +56,7 @@ export default function Table({ p }) {
         }
       />
       <Row
-        l="Klassifikation3"
+        l={translatekey("IKls_3")}
         r={
           <Box display="flex">
             <Svgcircle color={palette[p.IKls_3 - 1]} />

@@ -1,5 +1,9 @@
 export function translate(name, x) {
-  return translation[name][x] || "n/a";
+  return valuetranslation[name][x] || "n/a";
+}
+
+export function translatekey(name) {
+  return keytranslation[name] || name;
 }
 
 export function datestr(y, m, d) {
@@ -12,7 +16,14 @@ export function datestr(y, m, d) {
   }
 }
 
-const translation = {
+const keytranslation = {
+  IndxKls: "Klassifikation",
+  IndK2030: "Klassifikation2030",
+  IKls_2: "Klassifikation2",
+  IKls_3: "Klassifikation3",
+};
+
+const valuetranslation = {
   Brghtsk: {
     1: "max bruttovikt 64 ton",
     2: "max bruttovikt 51.4 ton",

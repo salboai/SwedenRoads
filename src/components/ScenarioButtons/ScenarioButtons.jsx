@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./scenariobuttons.css";
 import { Typography } from "@material-ui/core";
 import classnames from "classnames";
+import { translatekey } from "../Roadinfo/translate";
 
 export default function ScenarioButtons(props) {
   const names = props.names;
@@ -27,7 +28,7 @@ export default function ScenarioButtons(props) {
             })}
             onClick={handleClick(name)}
           >
-            <Typography variant="body1">{name}</Typography>
+            <Typography variant="body1">{translatekey(name)}</Typography>
           </button>
         ))}
       </div>
