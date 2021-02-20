@@ -6,6 +6,7 @@
     "@material-ui/core": "latest",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@material-ui/styles": "latest",
+    "classnames": "^2.2.6",
     "gatsby": "latest",
     "gatsby-plugin-material-ui": "^2.1.10",
     "gatsby-plugin-react-helmet": "latest",

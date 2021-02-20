@@ -1,47 +1,19 @@
 /* eslint-disable max-len, no-underscore-dangle */
 import React from "react";
 import mapboxgl from "mapbox-gl";
-import { Box, Typography } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { FormControlLabel, Switch } from "@material-ui/core";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import "./Mapbox.css";
 import Searchbar from "../Searchbar";
+import LoadingIndicator from "../LoadingIndicator";
+import ScenarioButtons from "../ScenarioButtons";
+import linecolors from "./linecolors";
 
-const linecolor1 = [
-  "match",
-  ["get", "IndxKls"],
-  1,
-  "#C40A3B",
-  2,
-  "#F2203E",
-  3,
-  "#FABF20",
-  4,
-  "#71C94B",
-  5,
-  "#20AC65",
-  "#ccc", //other
-];
-
-const linecolor2 = [
-  "match",
-  ["get", "IndK2030"],
-  1,
-  "#C40A3B",
-  2,
-  "#F2203E",
-  3,
-  "#FABF20",
-  4,
-  "#71C94B",
-  5,
-  "#20AC65",
-  "#ccc", //other
-];
+mapboxgl.accessToken = process.env.GATSBY_MAPBOX_ACCESS_TOKEN;
 
 const defaultpaint = {
   "line-width": ["case", ["boolean", ["feature-state", "hover"], false], 15, 5],
-  "line-color": linecolor1,
+  "line-color": linecolors.IndxKls,
 };
 
 export default class Mapbox extends React.Component {
@@ -57,10 +29,8 @@ export default class Mapbox extends React.Component {
   }
 
   componentDidMount() {
-    mapboxgl.accessToken = process.env.GATSBY_MAPBOX_ACCESS_TOKEN;
     this.map = new mapboxgl.Map({
       container: this.contaiinerref.current,
-      //style: "mapbox://styles/mapbox/light-v9",
       style: "mapbox://styles/mapbox/light-v10",
       center: [16.5509, 59.6368], //some initial location (västerås)
       zoom: 12, //some initial zoom
@@ -78,7 +48,7 @@ export default class Mapbox extends React.Component {
     });
 
     this.map.on("mousemove", (e) => {
-      var mousefeatures = this.map.queryRenderedFeatures(e.point);
+      const mousefeatures = this.map.queryRenderedFeatures(e.point);
       let hoveredID = null;
       for (let i = 0; i < mousefeatures.length; i++) {
         if (mousefeatures[i].source === "allroads") {
@@ -111,7 +81,7 @@ export default class Mapbox extends React.Component {
     });
 
     this.map.on("click", (e) => {
-      var mousefeatures = this.map.queryRenderedFeatures(e.point);
+      const mousefeatures = this.map.queryRenderedFeatures(e.point);
 
       //mousefeatures can be several things, some builtin to mapbox
       //check if actually clicked one of our dataset roads.
@@ -136,7 +106,6 @@ export default class Mapbox extends React.Component {
 
     this.map.on("sourcedata", () => {
       if (this.state.isLoading) {
-        console.log("source is added");
         this.setState({ isLoading: false });
       }
     });
@@ -155,15 +124,20 @@ export default class Mapbox extends React.Component {
       });
     };
 
-    this.setState({ fitBounds: fitBounds, flyTo: flyTo });
+    const setPaint = (indexkls) => {
+      console.log("setPaint, indexkls: ", indexkls);
+      this.map.setPaintProperty("layer1", "line-color", linecolors[indexkls]);
+    };
+
+    this.setState({ fitBounds: fitBounds, flyTo: flyTo, setPaint: setPaint });
   }
 
   togglepaint() {
     if (this.state.showingfuture) {
-      this.map.setPaintProperty("layer1", "line-color", linecolor1);
+      this.map.setPaintProperty("layer1", "line-color", linecolors.IndxKls);
       this.setState({ showingfuture: false });
     } else {
-      this.map.setPaintProperty("layer1", "line-color", linecolor2);
+      this.map.setPaintProperty("layer1", "line-color", linecolors.IndK2030);
       this.setState({ showingfuture: true });
     }
   }
@@ -173,7 +147,6 @@ export default class Mapbox extends React.Component {
       //for debug and reload purpose
       console.log("source already exists, skipping adding it again");
     } else {
-      //console.log("now adding source to this.map");
       this.map.addSource(id, source);
 
       this.map.addLayer({
@@ -197,7 +170,6 @@ export default class Mapbox extends React.Component {
   }
 
   placemarker(longlat) {
-    //this.markerelement.setLngLat(longlat).addTo(this.map);
     this.markerelement.setLngLat(longlat);
   }
 
@@ -216,37 +188,17 @@ export default class Mapbox extends React.Component {
             position="absolute"
             style={{ width: "100%", height: "100%" }}
           />
-          {this.state.isLoading ? (
-            <Box className="feedback">
-              <Box display="flex" flexDirection="column" alignItems="center">
-                <Typography>Hämtar data</Typography>
-                <CircularProgress />
-              </Box>
-            </Box>
-          ) : !this.state.isIdle ? (
-            <Box className="feedback">
-              <Box display="flex" flexDirection="column" alignItems="center">
-                <Typography>Bearbetar data</Typography>
-                <CircularProgress />
-              </Box>
-            </Box>
-          ) : null}
-          <Box className="togglebutton" bgcolor="#fff" px={1} py={0.5}>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={this.state.showingfuture}
-                  onChange={() => this.togglepaint()}
-                  name="checkedA"
-                />
-              }
-              label="Visa Framtid"
-            />
-          </Box>
-
+          <ScenarioButtons
+            setPaint={this.state.setPaint}
+            names={Object.keys(linecolors)}
+          />
           <Searchbar
             fitBounds={this.state.fitBounds}
             flyTo={this.state.flyTo}
+          />
+          <LoadingIndicator
+            isLoading={this.state.isLoading}
+            isIdle={this.state.isIdle}
           />
         </Box>
       );
