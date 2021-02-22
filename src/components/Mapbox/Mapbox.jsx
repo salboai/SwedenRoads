@@ -18,7 +18,7 @@ const defaultpaint = {
 export default class Mapbox extends React.Component {
   constructor(props) {
     super(props);
-    this.contaiinerref = React.createRef();
+    this.mapboxcontainerref = React.createRef();
     this.hoveredID = null;
     this.state = {
       showingfuture: false,
@@ -29,7 +29,7 @@ export default class Mapbox extends React.Component {
 
   componentDidMount() {
     this.map = new mapboxgl.Map({
-      container: this.contaiinerref.current,
+      container: this.mapboxcontainerref.current,
       style: "mapbox://styles/mapbox/light-v10",
       center: [16.5509, 59.6368], //some initial location (västerås)
       zoom: 12, //some initial zoom
@@ -131,16 +131,6 @@ export default class Mapbox extends React.Component {
     this.setState({ fitBounds: fitBounds, flyTo: flyTo, setPaint: setPaint });
   }
 
-  togglepaint() {
-    if (this.state.showingfuture) {
-      this.map.setPaintProperty("layer1", "line-color", linecolors.IndxKls);
-      this.setState({ showingfuture: false });
-    } else {
-      this.map.setPaintProperty("layer1", "line-color", linecolors.IndK2030);
-      this.setState({ showingfuture: true });
-    }
-  }
-
   addsource(id, source) {
     if (this.map.getSource("allroads")) {
       //for debug and reload purpose
@@ -183,7 +173,7 @@ export default class Mapbox extends React.Component {
       return (
         <Box className="maincontainer">
           <Box
-            ref={this.contaiinerref}
+            ref={this.mapboxcontainerref}
             position="absolute"
             style={{ width: "100%", height: "100%" }}
           />
