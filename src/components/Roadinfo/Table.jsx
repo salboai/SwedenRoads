@@ -31,7 +31,6 @@ export default function Table({ p }) {
   console.log(p);
   return (
     <Box>
-      <InfoDialog />
       <Row
         name="IndxKls"
         l={translatekey("IndxKls")}
@@ -122,16 +121,12 @@ export default function Table({ p }) {
       <Row name="IRI" l="IRI" r={`${p.IRI} mm/m`} colored />
       <Row name="Vägbrdd" l="Vägbredd" r={`${p.Vägbrdd} m`} />
       <Row
-        name="Beläggningsdatum"
+        name="Blggnngsd"
         l="Beläggningsdatum"
         r={datestr(p.Byear, p.Bmonth, p.Bday)}
         colored
       />
-      <Row
-        name="Mätdatum"
-        l="Mätdatum"
-        r={datestr(p.Myear, p.Mmonth, p.Mday)}
-      />
+      <Row name="Mätdatm" l="Mätdatum" r={datestr(p.Myear, p.Mmonth, p.Mday)} />
       <Row name="Vägnmmr" l="Vägnummer" r={`${p.Vägnmmr}`} colored />
       <Row name="Län_nr" l="Län" r={translate("Län_nr", p.Län_nr)} />
       <Row
