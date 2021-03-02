@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Box, Link } from "@material-ui/core";
+import { Box } from "@material-ui/core";
+import Link from "../Link";
 import { Button, Typography } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -38,6 +39,11 @@ export default function InfoDialog(props) {
         <DialogTitle id="dialog-title">{props.label}</DialogTitle>
         <DialogContent>
           <DialogContentText>{props.description}</DialogContentText>
+          {props.descriptionLink && (
+            <Link to={props.descriptionLink} target="_blank">
+              Läs mer
+            </Link>
+          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
@@ -48,3 +54,6 @@ export default function InfoDialog(props) {
     </>
   );
 }
+
+//{props.descriptionLinks}
+//Läs mer:

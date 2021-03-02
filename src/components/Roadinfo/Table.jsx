@@ -3,7 +3,7 @@ import { Box, Typography } from "@material-ui/core";
 import { translate, translatekey, datestr } from "./translate";
 import Svgcircle from "./Svgcircle";
 import InfoDialog from "../InfoDialog";
-import descriptions from "./descriptions";
+import { descriptions, descriptionLinks } from "./descriptions";
 
 function Row(props) {
   return (
@@ -16,7 +16,8 @@ function Row(props) {
     >
       <InfoDialog
         label={props.l}
-        description={descriptions[props.name] || "beskrivning saknas"}
+        description={descriptions[props.name]}
+        descriptionLink={descriptionLinks[props.name]}
       />
       <Typography variant="body1" component="span" align="right">
         {props.r}
@@ -31,6 +32,7 @@ export default function Table({ p }) {
   console.log(p);
   return (
     <Box>
+      <Row name="TllstnI" l="Tillstånd" r={`${p.TllstnI}%`} colored />
       <Row
         name="IndxKls"
         l={translatekey("IndxKls")}
@@ -73,11 +75,21 @@ export default function Table({ p }) {
         }
         colored
       />
-      <Row name="Vägktgr" l="Kategori" r={translate("Vägktgr", p.Vägktgr)} />
-      <Row name="Vägtyp" l="Vägtyp" r={translate("Vägtyp", p.Vägtyp)} colored />
-      <Row name="Hastght" l="Hastighetsbegränsning" r={`${p.Hastght} km/h`} />
-      <Row name="TllstnI" l="Tillstånd" r={`${p.TllstnI}%`} colored />
-      <Row name="Brghtsk" l="Bärighet" r={translate("Brghtsk", p.Brghtsk)} />
+      <Row name="Spårdjp" l="Spårdjup" r={`${p.Spårdjp} mm`} />
+      <Row
+        name="Sprdjp_"
+        l="Spårdjup underhållsstandard"
+        r={`${p.Sprdjp_}`}
+        colored
+      />
+      <Row name="IRI" l="IRI" r={`${p.IRI} mm/m`} />
+      <Row
+        name="IRI_ndr"
+        l="IRI underhållsstandard"
+        r={`${p.IRI_ndr}`}
+        colored
+      />
+      <Row name="Mätdatm" l="Mätdatum" r={datestr(p.Myear, p.Mmonth, p.Mday)} />
       <Row
         name="Blggnngst"
         l="Beläggning"
@@ -85,57 +97,50 @@ export default function Table({ p }) {
         colored
       />
       <Row
-        name="DoU2017"
-        l="Drift och underhållsklass"
-        r={translate("DoU2017", p.DoU2017)}
+        name="Blggnngsd"
+        l="Beläggningsdatum"
+        r={datestr(p.Byear, p.Bmonth, p.Bday)}
       />
-      <Row name="Trfkkls" l="Trafikklass" r={`${p.Trfkkls}`} colored />
-      <Row name="IRI_ndr" l="IRI underhållsstandard" r={`${p.IRI_ndr}`} />
-      <Row
-        name="Sprdjp_"
-        l="Spårdjup underhållsstandard"
-        r={`${p.Sprdjp_}`}
-        colored
-      />
-      <Row name="Spårdjp" l="Spårdjup" r={`${p.Spårdjp} mm`} />
       <Row name="Ålder" l="Ålder (år 2020)" r={`${p.Ålder} år`} colored />
-      <Row name="ÅtrstnL" l="Återstående Livslängd" r={`${p.ÅtrstnL} år`} />
+      <Row name="FrvntdL" l="Förväntad Livslängd" r={`${p.FrvntdL} år`} />
+      <Row name="Län_nr" l="Län" r={translate("Län_nr", p.Län_nr)} colored />
+      <Row name="Kmmn_nr" l="Kommun" r={translate("Kmmn_nr", p.Kmmn_nr)} />
+      <Row name="Vägnmmr" l="Vägnummer" r={`${p.Vägnmmr}`} colored />
+      <Row name="Vägktgr" l="Kategori" r={translate("Vägktgr", p.Vägktgr)} />
+      <Row name="Vägtyp" l="Vägtyp" r={translate("Vägtyp", p.Vägtyp)} colored />
       <Row
-        name="FrvntdL"
-        l="Förväntad Livslängd"
-        r={`${p.FrvntdL} år`}
-        colored
+        name="ÅDT_frd"
+        l={`Alla fordon (år ${p.ÅDT_mtr})`}
+        r={`${p.ÅDT_frd} fordon/dygn`}
       />
-      <Row name="Längd" l="Längd vägsträcka" r={`${p.Längd} m`} />
       <Row
         name="ÅDT_tng"
         l={`Tunga fordon (år ${p.ÅDT_mtr})`}
         r={`${p.ÅDT_tng} fordon/dygn`}
         colored
       />
+      <Row name="Brghtsk" l="Bärighet" r={translate("Brghtsk", p.Brghtsk)} />
       <Row
-        name="ÅDT_frd"
-        l={`Alla fordon (år ${p.ÅDT_mtr})`}
-        r={`${p.ÅDT_frd} fordon/dygn`}
-      />
-      <Row name="IRI" l="IRI" r={`${p.IRI} mm/m`} colored />
-      <Row name="Vägbrdd" l="Vägbredd" r={`${p.Vägbrdd} m`} />
-      <Row
-        name="Blggnngsd"
-        l="Beläggningsdatum"
-        r={datestr(p.Byear, p.Bmonth, p.Bday)}
+        name="Hastght"
+        l="Hastighetsbegränsning"
+        r={`${p.Hastght} km/h`}
         colored
       />
-      <Row name="Mätdatm" l="Mätdatum" r={datestr(p.Myear, p.Mmonth, p.Mday)} />
-      <Row name="Vägnmmr" l="Vägnummer" r={`${p.Vägnmmr}`} colored />
-      <Row name="Län_nr" l="Län" r={translate("Län_nr", p.Län_nr)} />
+
       <Row
-        name="Kmmn_nr"
-        l="Kommun"
-        r={translate("Kmmn_nr", p.Kmmn_nr)}
-        colored
+        name="DoU2017"
+        l="Drift och underhållsklass"
+        r={translate("DoU2017", p.DoU2017)}
       />
+      <Row name="Vägbrdd" l="Vägbredd" r={`${p.Vägbrdd} m`} colored />
+
+      <Row name="Trfkkls" l="Trafikklass" r={`${p.Trfkkls}`} />
+      <Row name="Längd" l="Längd vägsträcka" r={`${p.Längd} m`} colored />
+
+      {/*
+      <Row name="ÅtrstnL" l="Återstående Livslängd" r={`${p.ÅtrstnL} år`} />
       <Row name="Region" l="Region" r={translate("Region", p.Region)} />
+      */}
     </Box>
   );
 }
