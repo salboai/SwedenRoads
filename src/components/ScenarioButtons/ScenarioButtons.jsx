@@ -22,11 +22,11 @@ export default function ScenarioButtons(props) {
         {names.map((name) => (
           <button
             key={name}
+            onClick={handleClick(name)}
             className={classnames({
               scenariobutton: true,
               active: selected === name,
             })}
-            onClick={handleClick(name)}
           >
             <Typography variant="body1">{translatekey(name)}</Typography>
           </button>

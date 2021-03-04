@@ -7,15 +7,18 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@material-ui/styles": "latest",
     "classnames": "^2.2.6",
-    "gatsby": "latest",
+    "gatsby": "^2.32.9",
     "gatsby-plugin-material-ui": "^2.1.10",
-    "gatsby-plugin-react-helmet": "latest",
-    "mapbox-gl": "^1.11.1",
+    "gatsby-plugin-react-helmet": "^3.4.0",
+    "mapbox-gl": "^1.13.1",
     "mapillary-js": "^2.21.0",
     "react": "latest",
     "react-dom": "latest",
     "react-fetch-hook": "^1.8.5",
     "react-helmet": "latest"
+  },
+  "peerDependencies": {
+    "postcss": "^8.0.0"
   },
   "scripts": {
     "develop": "gatsby develop",
