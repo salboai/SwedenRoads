@@ -3,7 +3,7 @@ import { Box, Typography } from "@material-ui/core";
 import { translate, translatekey, datestr } from "./translate";
 import Svgcircle from "./Svgcircle";
 import InfoDialog from "../InfoDialog";
-import { descriptions, descriptionLinks } from "./descriptions";
+import { descriptions } from "./descriptions";
 
 function Row(props) {
   return (
@@ -14,11 +14,7 @@ function Row(props) {
       display="flex"
       justifyContent="space-between"
     >
-      <InfoDialog
-        label={props.l}
-        description={descriptions[props.name]}
-        descriptionLink={descriptionLinks[props.name]}
-      />
+      <InfoDialog label={props.l} description={descriptions[props.name]} />
       <Typography variant="body1" component="span" align="right">
         {props.r}
       </Typography>
@@ -134,10 +130,10 @@ export default function Table({ p }) {
       />
       <Row name="Vägbrdd" l="Vägbredd" r={`${p.Vägbrdd} m`} colored />
 
-      <Row name="Trfkkls" l="Trafikklass" r={`${p.Trfkkls}`} />
-      <Row name="Längd" l="Längd vägsträcka" r={`${p.Längd} m`} colored />
+      <Row name="Längd" l="Längd vägsträcka" r={`${p.Längd} m`} />
 
       {/*
+      <Row name="Trfkkls" l="Trafikklass" r={`${p.Trfkkls}`} />
       <Row name="ÅtrstnL" l="Återstående Livslängd" r={`${p.ÅtrstnL} år`} />
       <Row name="Region" l="Region" r={translate("Region", p.Region)} />
       */}

@@ -17,10 +17,10 @@ export function datestr(y, m, d) {
 }
 
 const keytranslation = {
-  IndxKls: "Klassifikation",
-  IndK2030: "Klassifikation2030",
-  IKls_2: "Klassifikation2",
-  IKls_3: "Klassifikation3",
+  IndxKls: "Tillståndsklass",
+  IndK2030: "Tillståndsklass 2030 3.4 miljarder",
+  IKls_2: "Tillståndsklass 2030 5.4 miljarder",
+  IKls_3: "Tillståndsklass 2030 7,4 miljarder",
 };
 
 const valuetranslation = {

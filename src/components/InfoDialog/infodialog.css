@@ -1,0 +1,14 @@
+.textbutton:hover {
+  color: #3175e5;
+  cursor: pointer;
+}
+
+a {
+  color: #3175e5;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

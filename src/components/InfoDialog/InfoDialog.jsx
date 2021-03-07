@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Box } from "@material-ui/core";
-import Link from "../Link";
+//import Link from "../Link";
 import { Button, Typography } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import ReactMarkdown from "react-markdown";
 
-import "./infolink.css";
+import "./infodialog.css";
 
 export default function InfoDialog(props) {
   const [open, setOpen] = useState(false);
@@ -38,12 +39,9 @@ export default function InfoDialog(props) {
       >
         <DialogTitle id="dialog-title">{props.label}</DialogTitle>
         <DialogContent>
-          <DialogContentText>{props.description}</DialogContentText>
-          {props.descriptionLink && (
-            <Link to={props.descriptionLink} target="_blank">
-              Läs mer
-            </Link>
-          )}
+          <DialogContentText>
+            <ReactMarkdown>{props.description}</ReactMarkdown>
+          </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
@@ -54,6 +52,3 @@ export default function InfoDialog(props) {
     </>
   );
 }
-
-//{props.descriptionLinks}
-//Läs mer:
