@@ -71,72 +71,103 @@ export default function Table({ p }) {
         }
         colored
       />
-      <Row name="Spårdjp" l="Spårdjup" r={`${p.Spårdjp} mm`} />
+      <Row name="Spårdjup" l={translatekey("Spårdjp")} r={`${p.Spårdjp} mm`} />
+
       <Row
         name="Sprdjp_"
-        l="Spårdjup underhållsstandard"
+        l={translatekey("Sprdjp_")}
         r={`${p.Sprdjp_}`}
         colored
       />
-      <Row name="IRI" l="IRI" r={`${p.IRI} mm/m`} />
+      <Row name="IRI" l={translatekey("IRI")} r={`${p.IRI} mm/m`} />
       <Row
         name="IRI_ndr"
-        l="IRI underhållsstandard"
+        l={translatekey("IRI_ndr")}
         r={`${p.IRI_ndr}`}
         colored
       />
-      <Row name="Mätdatm" l="Mätdatum" r={datestr(p.Myear, p.Mmonth, p.Mday)} />
+      <Row
+        name="Mätdatm"
+        l={translatekey("Mätdatm")}
+        r={datestr(p.Myear, p.Mmonth, p.Mday)}
+      />
       <Row
         name="Blggnngst"
-        l="Beläggning"
+        l={translatekey("Blggnngst")}
         r={translate("Blggnngst", p.Blggnngst)}
         colored
       />
       <Row
         name="Blggnngsd"
-        l="Beläggningsdatum"
+        l={translatekey("Blggnngsd")}
         r={datestr(p.Byear, p.Bmonth, p.Bday)}
       />
-      <Row name="Ålder" l="Ålder (år 2020)" r={`${p.Ålder} år`} colored />
-      <Row name="FrvntdL" l="Förväntad Livslängd" r={`${p.FrvntdL} år`} />
-      <Row name="Län_nr" l="Län" r={translate("Län_nr", p.Län_nr)} colored />
-      <Row name="Kmmn_nr" l="Kommun" r={translate("Kmmn_nr", p.Kmmn_nr)} />
-      <Row name="Vägnmmr" l="Vägnummer" r={`${p.Vägnmmr}`} colored />
-      <Row name="Vägktgr" l="Kategori" r={translate("Vägktgr", p.Vägktgr)} />
-      <Row name="Vägtyp" l="Vägtyp" r={translate("Vägtyp", p.Vägtyp)} colored />
+      <Row name="Ålder" l={translatekey("Ålder")} r={`${p.Ålder} år`} colored />
+      <Row name="FrvntdL" l={translatekey("FrvntdL")} r={`${p.FrvntdL} år`} />
+      <Row
+        name="Län_nr"
+        l={translatekey("Län_nr")}
+        r={translate("Län_nr", p.Län_nr)}
+        colored
+      />
+      <Row
+        name="Kmmn_nr"
+        l={translatekey("Kmmn_nr")}
+        r={translate("Kmmn_nr", p.Kmmn_nr)}
+      />
+
+      <Row
+        name="Vägnmmr"
+        l={translatekey("Vägnmmr")}
+        r={`${p.Vägnmmr}`}
+        colored
+      />
+      <Row
+        name="Vägktgr"
+        l={translatekey("Vägktgr")}
+        r={translate("Vägktgr", p.Vägktgr)}
+      />
+      <Row
+        name="Vägtyp"
+        l={translatekey("Vägtyp")}
+        r={translate("Vägtyp", p.Vägtyp)}
+        colored
+      />
       <Row
         name="ÅDT_frd"
-        l={`Alla fordon (år ${p.ÅDT_mtr})`}
+        l={`${translatekey("ÅDT_frd")} (år ${p.ÅDT_mtr})`}
         r={`${p.ÅDT_frd} fordon/dygn`}
       />
       <Row
         name="ÅDT_tng"
-        l={`Tunga fordon (år ${p.ÅDT_mtr})`}
+        l={`${translatekey("ÅDT_tng")} (år ${p.ÅDT_mtr})`}
         r={`${p.ÅDT_tng} fordon/dygn`}
         colored
       />
-      <Row name="Brghtsk" l="Bärighet" r={translate("Brghtsk", p.Brghtsk)} />
+      <Row
+        name="Brghtsk"
+        l={translatekey("Brghtsk")}
+        r={translate("Brghtsk", p.Brghtsk)}
+      />
       <Row
         name="Hastght"
-        l="Hastighetsbegränsning"
+        l={translatekey("Hastght")}
         r={`${p.Hastght} km/h`}
         colored
       />
 
       <Row
         name="DoU2017"
-        l="Drift och underhållsklass"
+        l={translatekey("DoU2017")}
         r={translate("DoU2017", p.DoU2017)}
       />
-      <Row name="Vägbrdd" l="Vägbredd" r={`${p.Vägbrdd} m`} colored />
-
-      <Row name="Längd" l="Längd vägsträcka" r={`${p.Längd} m`} />
-
-      {/*
-      <Row name="Trfkkls" l="Trafikklass" r={`${p.Trfkkls}`} />
-      <Row name="ÅtrstnL" l="Återstående Livslängd" r={`${p.ÅtrstnL} år`} />
-      <Row name="Region" l="Region" r={translate("Region", p.Region)} />
-      */}
+      <Row
+        name="Vägbrdd"
+        l={translatekey("Vägbrdd")}
+        r={`${p.Vägbrdd} m`}
+        colored
+      />
+      <Row name="Längd" l={translatekey("Längd")} r={`${p.Längd} m`} />
     </Box>
   );
 }

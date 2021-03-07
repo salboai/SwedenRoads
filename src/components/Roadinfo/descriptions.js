@@ -19,13 +19,13 @@ const descriptions = {
   Läs mer om spårdjup i Svenska Byggbranschens Utvecklingsfonds publikation [Jämnt Hela Vägen - handbok i vägytemått](https://vpp.sbuf.se/Public/Documents/ProjectDocuments/60911052-4fae-490d-88d9-84c33cbc74a5/FinalReport/SBUF%2012763%20Slutrapport%20Handbok%20i%20v%C3%A4gytem%C3%A5tt.pdf).`,
   Sprdjp_: `Spårdjup underhållsstandard beskriver det spårdjupsvärde då underhåll bör sättas in enligt Trafikverkets underhållsstandard. Standarden för olika vägsträckor beror på trafikmängd samt skyltad hastighet.
   
-  Läs mer om [underhållsstandarden hos Trafikverket](https://www.trafikverket.se/resa-och-trafik/underhall-av-vag-och-jarnvag/Sa-skoter-vi-vagar/Underhall-av-belagda-vagar-/Underhallsstandard-for-belagda-vagnatet/).`,
+  Läs mer om underhållsstandarden hos [Trafikverket](https://www.trafikverket.se/resa-och-trafik/underhall-av-vag-och-jarnvag/Sa-skoter-vi-vagar/Underhall-av-belagda-vagar-/Underhallsstandard-for-belagda-vagnatet/).`,
   IRI: `IRI, International Roughness Index, mäts i enheten millimeter per meter och mäter vägens längsgående ojämnheter. Måttet utvecklades av Världsbanken i mitten på åttiotalet och beskriver vägens åkkomfort. Ju högre IRI-värde, desto skumpigare upplevs vägen för trafikanten. Trafikverket offentliggör medelvärden per 20 meter uppmätt väg, och IRI-värdet för varje sträcka är den 75:e percentilen av 20-meters medelvärden som överlappar sträckan.
   
   Läs mer om IRI i Svenska Byggbranschens Utvecklingsfonds publikation [Jämnt Hela Vägen - handbok i vägytemått](https://vpp.sbuf.se/Public/Documents/ProjectDocuments/60911052-4fae-490d-88d9-84c33cbc74a5/FinalReport/SBUF%2012763%20Slutrapport%20Handbok%20i%20v%C3%A4gytem%C3%A5tt.pdf).`,
   IRI_ndr: `IRI underhållsstandard beskriver det IRI-värde då underhåll bör sättas in enligt Trafikverkets underhållsstandard. Standarden för varje vägsträcka beror på trafikmängd samt skyltad hastighet.
   
-  Läs mer om [underhållsstandarden hos Trafikverket](https://www.trafikverket.se/resa-och-trafik/underhall-av-vag-och-jarnvag/Sa-skoter-vi-vagar/Underhall-av-belagda-vagar-/Underhallsstandard-for-belagda-vagnatet/).`,
+  Läs mer om underhållsstandarden hos [Trafikverket](https://www.trafikverket.se/resa-och-trafik/underhall-av-vag-och-jarnvag/Sa-skoter-vi-vagar/Underhall-av-belagda-vagar-/Underhallsstandard-for-belagda-vagnatet/).`,
   Mätdatm: "Mätdatum är det datum då vägytan (IRI och spårdjup) senast mättes.",
   Blggnngst: `Vägens senast registrerade beläggning fram till år 2019. Beläggningen är vägens översta lager, kallat slitlager. Beroende på vägtyp kan vägen ha flera underliggande lager som tillsammans utgör vägens konstruktion.
   
