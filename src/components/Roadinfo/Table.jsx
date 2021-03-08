@@ -71,8 +71,7 @@ export default function Table({ p }) {
         }
         colored
       />
-      <Row name="Spårdjup" l={translatekey("Spårdjp")} r={`${p.Spårdjp} mm`} />
-
+      <Row name="Spårdjp" l={translatekey("Spårdjp")} r={`${p.Spårdjp} mm`} />
       <Row
         name="Sprdjp_"
         l={translatekey("Sprdjp_")}
