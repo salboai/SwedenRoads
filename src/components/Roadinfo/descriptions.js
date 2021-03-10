@@ -5,13 +5,13 @@ const descriptions = {
   IndxKls: `Tillståndsklass 2020 beskriver vägens tillstånd enligt dess tillståndsindex år 2020.
   
   Läs mer om tillståndsklassificeringen i Transportföretagens rapport [Långsiktiga effekter av ett underfinansierat vägunderhåll](https://www.transportforetagen.se/nyhetslista/ny-rapport-mer-an-var-tionde-vag-ar-i-mycket-daligt-skick/).`,
-  IndK2030: `Tillståndsklass 2030 3,4 miljarder är den tillståndsklass en väg beräknas få år 2030 med nuvarande budgetanslag för underhåll av vägbeläggning, där nuvarande budgetanslag antas vara cirka 3,4 miljader kronor per år.
+  IndK2030: `Tillståndsklass 2030 3,4 miljarder är den tillståndsklass en väg beräknas få år 2030 med nuvarande budgetanslag för underhåll av vägbeläggning, där nuvarande budgetanslag antas vara cirka 3,4 miljader kronor per år. Klassificeringen utgår från ett scenario där underhåll prioriteras enligt vägens Drift- och underhållsklass samt trafikmängd. Scenariot är ett möjligt utfall, men ska inte ses som en prediktion då många olika faktorer påverkar underhållsbesluten.
   
   Läs mer om tillståndsklassificeringen i Transportföretagens rapport [Långsiktiga effekter av ett underfinansierat vägunderhåll](https://www.transportforetagen.se/nyhetslista/ny-rapport-mer-an-var-tionde-vag-ar-i-mycket-daligt-skick/).`,
-  IKls_2: `Tillståndsklass 2030 5,4 miljarder är den tillståndsklass en väg beräknas få med den budget som så kostnadseffektivt som möjligt upprätthåller vägnätets nuvarande genomsnittstillstånd och behåller underhållsskulden på samma nivå år 2030 som år 2020. Denna budget beräknas till cirka 5,4 miljarder kronor per år.
+  IKls_2: `Tillståndsklass 2030 5,4 miljarder är den tillståndsklass en väg beräknas få med den budget som så kostnadseffektivt som möjligt upprätthåller vägnätets nuvarande tillstånd och behåller underhållsskulden på samma nivå år 2030 som år 2020. Denna budget beräknas till cirka 5,4 miljarder kronor per år. Individuella vägars tillstånd kan variera, men vägnätets genomsnittliga tillstånd är detsamma som år 2020.
   
   Läs mer om tillståndsklassificeringen i Transportföretagens rapport [Långsiktiga effekter av ett underfinansierat vägunderhåll](https://www.transportforetagen.se/nyhetslista/ny-rapport-mer-an-var-tionde-vag-ar-i-mycket-daligt-skick/).`,
-  IKls_3: `Tillståndsklass 2030 7,4 miljarder är den tillståndsklass en väg beräknas få med den budget som krävs för att minimera underhållsskulden fram till år 2030. Denna budget beräknas till cirka 7,4 miljarder kronor per år.
+  IKls_3: `Tillståndsklass 2030 7,4 miljarder är den tillståndsklass en väg beräknas få med den budget som krävs för att minimera underhållsskulden fram till år 2030. Denna budget beräknas till cirka 7,4 miljarder kronor per år. Scenariot innebär att budgeten kostnadseffektiviserats, vilket gör att de vägar som är dyrast att underhålla (främst högtrafikerade motorvägar och 2+1 vägar) kan få ett något sämre tillstånd i detta scenario år 2030 än i övriga scenarion.
   
   Läs mer om tillståndsklassificeringen i Transportföretagens rapport [Långsiktiga effekter av ett underfinansierat vägunderhåll](https://www.transportforetagen.se/nyhetslista/ny-rapport-mer-an-var-tionde-vag-ar-i-mycket-daligt-skick/).`,
   Spårdjp: `Spårdjupet beskriver vägens ojämnhet i tvärled och mäts i millimeter. En mycket spårig väg kan bl.a. orsaka vattenplaning. Trafikverket offentliggör medelvärden per 20 meter uppmätt väg, och spårdjupsvärdet för varje sträcka är den 75:e percentilen av 20-meters medelvärden som överlappar sträckan.
@@ -27,7 +27,7 @@ const descriptions = {
   
   Läs mer om underhållsstandarden hos [Trafikverket](https://www.trafikverket.se/resa-och-trafik/underhall-av-vag-och-jarnvag/Sa-skoter-vi-vagar/Underhall-av-belagda-vagar-/Underhallsstandard-for-belagda-vagnatet/).`,
   Mätdatm: "Mätdatum är det datum då vägytan (IRI och spårdjup) senast mättes.",
-  Blggnngst: `Vägens senast registrerade beläggning fram till år 2019. Beläggningen är vägens översta lager, kallat slitlager. Beroende på vägtyp kan vägen ha flera underliggande lager som tillsammans utgör vägens konstruktion.
+  Blggnngst: `Vägens senast registrerade beläggning fram till år 2019. Beläggningen är vägens översta lager, kallat slitlager. Beroende på vägtyp kan vägen ha flera underliggande lager som tillsammans utgör vägens konstruktion. Den vanligaste beläggningstypen är ytbehandling på bituminöst underlag, följt av varm beläggning. Varm stenrik beläggning används främst på högtrafikerade vägar, medan ytbehandling på grus, indränkt makadam och halvvarm beläggning oftast används på lågtrafikerade vägar (trafikmängd under 2 000 fordon per dygn). Försegling är främst en förebyggande åtgärd, och tunnskikt kan vara både förebyggande eller en mer omfattande åtgärd i kombination med andra åtgärder. Övrigt kan vara t.ex. preparering inför ett nytt slitlager.
   
   Mer om beläggningar och vägkonstruktion finns att läsa hos Asfaltsskolans Utbildningsråd [Asfaltsboken](https://asfaltboken.se/).`,
   Blggnngsd: `Datum för senaste beläggning till och med år 2019.`,
