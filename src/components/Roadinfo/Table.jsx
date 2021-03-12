@@ -75,14 +75,14 @@ export default function Table({ p }) {
       <Row
         name="Sprdjp_"
         l={translatekey("Sprdjp_")}
-        r={`${p.Sprdjp_}`}
+        r={`${p.Sprdjp_} mm`}
         colored
       />
       <Row name="IRI" l={translatekey("IRI")} r={`${p.IRI} mm/m`} />
       <Row
         name="IRI_ndr"
         l={translatekey("IRI_ndr")}
-        r={`${p.IRI_ndr}`}
+        r={`${p.IRI_ndr} mm/m`}
         colored
       />
       <Row
