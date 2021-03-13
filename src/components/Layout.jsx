@@ -5,6 +5,7 @@ import Mapbox from "./Mapbox";
 import Roadinfo from "./Roadinfo";
 import useSource from "../hooks/useSource";
 import useProperties from "../hooks/useProperties";
+import About from "./About";
 
 const MapillaryClientID = process.env.GATSBY_MAPILLARY_CLIENTID;
 const baseurl = "https://a.mapillary.com/v3/images?";
@@ -48,6 +49,7 @@ export default function Layout(props) {
 
   return (
     <Box position="relative">
+      <About />
       <Roadinfo road={road} features={features} />
       <Mapbox ref={mapboxref} onRoadclick={onRoadclick} />
     </Box>

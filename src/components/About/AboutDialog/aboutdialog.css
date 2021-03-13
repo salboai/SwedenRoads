@@ -1,0 +1,19 @@
+.aboutbutton {
+  /*color: #3175e5;*/
+  cursor: pointer;
+}
+
+.aboutbutton:hover {
+  color: #3175e5;
+  text-decoration: underline;
+}
+
+a {
+  color: #3175e5;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

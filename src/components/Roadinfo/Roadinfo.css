@@ -1,12 +1,12 @@
 .roadinfo {
-  z-index: 999;
+  z-index: 9;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 .fadeIn {
   visibility: visible;
-  z-index: 999;
+  z-index: 9;
   opacity: 1;
   transition: opacity 0.4s;
   overflow-y: auto;

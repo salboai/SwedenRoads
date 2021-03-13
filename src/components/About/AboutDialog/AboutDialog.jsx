@@ -9,7 +9,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import ReactMarkdown from "react-markdown";
 
-import "./infodialog.css";
+import "./aboutdialog.css";
 
 export default function InfoDialog(props) {
   const [open, setOpen] = useState(false);
@@ -25,7 +25,7 @@ export default function InfoDialog(props) {
 
   return (
     <>
-      <Box onClick={handleClickOpen} className="textbutton">
+      <Box onClick={handleClickOpen} className="aboutbutton">
         <Typography variant="body1" component="span">
           {props.label}
         </Typography>
@@ -35,12 +35,12 @@ export default function InfoDialog(props) {
         maxWidth="sm"
         open={open}
         onClose={handleClose}
-        aria-labelledby="description-dialog"
-        aria-describedby="description-dialog-description"
+        aria-labelledby="about-dialog"
+        aria-describedby="about-dialog-description"
       >
-        <DialogTitle id="description-dialog">{props.label}</DialogTitle>
+        <DialogTitle id="about-dialog">{props.label}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="description-dialog-description">
+          <DialogContentText id="about-dialog-description">
             <ReactMarkdown>{props.description}</ReactMarkdown>
           </DialogContentText>
         </DialogContent>
