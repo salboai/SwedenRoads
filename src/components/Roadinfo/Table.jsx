@@ -28,7 +28,12 @@ export default function Table({ p }) {
   console.log(p);
   return (
     <Box>
-      <Row name="TllstnI" l="Tillstånd" r={`${p.TllstnI}%`} colored />
+      <Row
+        name="TllstnI"
+        l={translatekey("TllstnI")}
+        r={`${p.TllstnI}%`}
+        colored
+      />
       <Row
         name="IndxKls"
         l={translatekey("IndxKls")}

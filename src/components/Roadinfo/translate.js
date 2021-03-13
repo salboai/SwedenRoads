@@ -17,10 +17,11 @@ export function datestr(y, m, d) {
 }
 
 const keytranslation = {
-  IndxKls: "Tillståndsklass",
-  IndK2030: "Tillståndsklass 2030 3.4 miljarder",
-  IKls_2: "Tillståndsklass 2030 5.4 miljarder",
-  IKls_3: "Tillståndsklass 2030 7,4 miljarder",
+  TllstnI: "Tillståndsindex",
+  IndxKls: "Tillstånd 2020",
+  IndK2030: "Tillstånd 2030 nuvarande budget",
+  IKls_2: "Tillstånd 2030 konstant underhållsskuld",
+  IKls_3: "Tillstånd 2030 minimera underhållsskulden",
   Spårdjp: "Spårdjup",
   Sprdjp_: "Spårdjup underhållsstandard",
   IRI: "IRI",
