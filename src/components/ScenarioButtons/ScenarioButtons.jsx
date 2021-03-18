@@ -16,9 +16,6 @@ export default function ScenarioButtons(props) {
 
   return (
     <div className="container">
-      <div className="heading">
-        <Typography variant="subtitle2">Visa Färg Enligt</Typography>
-      </div>
       <div className="scenariobuttons">
         {names.map((name) => (
           <Tooltip
