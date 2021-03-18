@@ -8,7 +8,7 @@ export default function Tooltip(props) {
       {props.children}
       <span className="tooltiptext">
         <Typography variant="body1" component="span">
-          tooltiptext here
+          {props.title}
         </Typography>
       </span>
     </div>

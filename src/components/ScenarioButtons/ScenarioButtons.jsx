@@ -3,7 +3,7 @@ import "./scenariobuttons.css";
 import { Typography } from "@material-ui/core";
 import classnames from "classnames";
 import { translatekey } from "../Roadinfo/translate";
-import Tooltip from "../Tooltip";
+import Tooltip from "../LightTooltip";
 
 export default function ScenarioButtons(props) {
   const names = props.names;
@@ -21,7 +21,15 @@ export default function ScenarioButtons(props) {
       </div>
       <div className="scenariobuttons">
         {names.map((name) => (
-          <Tooltip key={name}>
+          <Tooltip
+            key={name}
+            arrow
+            title={
+              <Typography variant="body1" component="span">
+                tooltiptext here long more text if lala land hej mer text
+              </Typography>
+            }
+          >
             <button
               onClick={handleClick(name)}
               className={classnames({
