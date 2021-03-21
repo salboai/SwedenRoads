@@ -25,7 +25,6 @@ function Row(props) {
 const palette = ["#C40A3B", "#F2203E", "#FABF20", "#71C94B", "#20AC65", "#ccc"];
 
 export default function Table({ p }) {
-  console.log(p);
   return (
     <Box>
       <Row

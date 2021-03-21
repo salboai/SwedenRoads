@@ -124,7 +124,7 @@ export default class Mapbox extends React.Component {
     };
 
     const setPaint = (indexkls) => {
-      console.log("setPaint, indexkls: ", indexkls);
+      //console.log("setPaint, indexkls: ", indexkls);
       this.map.setPaintProperty("layer1", "line-color", linecolors[indexkls]);
     };
 
@@ -176,7 +176,7 @@ export default class Mapbox extends React.Component {
             ref={this.mapboxcontainerref}
             position="absolute"
             style={{ width: "100%", height: "100%" }}
-          />
+          ></Box>
           <ScenarioButtons
             setPaint={this.state.setPaint}
             names={Object.keys(linecolors)}

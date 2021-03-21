@@ -25,6 +25,15 @@ export default function Searchbar(props) {
     }
   };
 
+  /*
+  const keyPress = (e) => {
+    if (e.keyCode === 13) {
+      console.log("value", e.target.value);
+      // put the login here
+    }
+  };
+  */
+
   return (
     <Autocomplete
       className="autocomplete"
@@ -38,6 +47,7 @@ export default function Searchbar(props) {
       options={Object.keys(places)}
       renderInput={(params) => (
         <TextField
+          //onKeyDown={keyPress}
           className="textfield"
           {...params}
           label="Sök plats"

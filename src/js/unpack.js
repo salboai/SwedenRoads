@@ -12,7 +12,7 @@ export function makesource(collection) {
   let props = collection[2];
   let Nfeatures = lengths.length;
   let Nprops = 2; //MAKE SURE THIS IS SAME AS IN the datascript that generated it
-  console.log("Total number of features: ", Nfeatures);
+  //console.log("Total number of features: ", Nfeatures);
 
   let i = 0;
   let len = 0;
@@ -50,7 +50,7 @@ function makeVERYEXPENSIVEsource(collection) {
   let props = collection[2];
   let Nfeatures = lengths.length;
   let Nprops = 31; //MAKE SURE THIS IS SAME AS IN featurecollection2properties.js
-  console.log("Totalt antal features: ", Nfeatures);
+  //console.log("Totalt antal features: ", Nfeatures);
 
   let i = 0;
   let len = 0;

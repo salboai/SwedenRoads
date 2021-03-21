@@ -13,4 +13,7 @@ module.exports = {
     "gatsby-plugin-material-ui",
     "gatsby-plugin-react-helmet",
   ],
+  flags: {
+    DEV_SSR: false,
+  }
 };

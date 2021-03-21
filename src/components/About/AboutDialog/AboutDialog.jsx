@@ -40,8 +40,9 @@ export default function InfoDialog(props) {
       >
         <DialogTitle id="about-dialog">{props.label}</DialogTitle>
         <DialogContent>
-          <Typography variant="body1">
+          <Typography variant="body1" component="span">
             <ReactMarkdown>{props.description}</ReactMarkdown>
+            {/*
             <div className="logo">
               <a
                 href="https://www.transportforetagen.se/"
@@ -50,6 +51,7 @@ export default function InfoDialog(props) {
                 <img src="/transportföretagen_logo.png" />
               </a>
             </div>
+            */}
           </Typography>
         </DialogContent>
         <DialogActions>

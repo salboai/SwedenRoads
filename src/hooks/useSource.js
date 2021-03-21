@@ -15,7 +15,7 @@ function makesource(collection) {
   let props = collection[2];
   let Nfeatures = lengths.length;
   let Nprops = 4; //MAKE SURE THIS IS SAME AS IN the datascript that generated it
-  console.log("Total number of features: ", Nfeatures);
+  //console.log("Total number of features: ", Nfeatures);
 
   let i = 0;
   let len = 0;

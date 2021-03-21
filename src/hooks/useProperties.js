@@ -3,7 +3,7 @@ import usePromise from "react-fetch-hook/usePromise";
 function makeproperties(v) {
   let Nprops = 34; //MAKE SURE THIS IS SAME AS IN featurecollection2properties.js
   let Nfeatures = v.length / Nprops;
-  console.log("Totalt antal features (makeproperties): ", Nfeatures);
+  //console.log("Totalt antal features (makeproperties): ", Nfeatures);
 
   const properties = new Array(Nfeatures);
   for (let id = 0; id < Nfeatures; id++) {
