@@ -7,32 +7,33 @@ import usePlaces from "../../hooks/usePlaces";
 export default function Searchbar(props) {
   const [selected, setSelected] = useState("");
   const [tag, setTag] = useState("");
-  const places = usePlaces(tag);
+  const [placesvec, places] = usePlaces(tag);
 
   const handleTag = (e, v) => {
     setTag(v);
   };
 
   const handleSelected = (e, v) => {
-    const p = places[v];
-    setSelected(v);
-    if (p.bbox) {
-      //some places such as municipalities have a bounding box. nice.
-      props.fitBounds(p.bbox);
-    } else {
-      //otherwise just use the center coordinate
-      props.flyTo(p.center);
+    const p = places[v] || null;
+    if (p) {
+      setSelected(v);
+      if (p.bbox) {
+        //some places such as municipalities have a bounding box. nice.
+        props.fitBounds(p.bbox);
+      } else {
+        //otherwise just use the center coordinate with a defaultzoom specified in flyTo function
+        props.flyTo(p.center);
+      }
     }
   };
 
-  /*
   const keyPress = (e) => {
-    if (e.keyCode === 13) {
-      console.log("value", e.target.value);
-      // put the login here
+    //if Enter is pressed on the textfield; autocomplete to first in placesvec and handle selected
+    if (e.keyCode === 13 && placesvec.length > 0) {
+      const v = placesvec[0].place_name;
+      handleSelected(null, v);
     }
   };
-  */
 
   return (
     <Autocomplete
@@ -47,7 +48,7 @@ export default function Searchbar(props) {
       options={Object.keys(places)}
       renderInput={(params) => (
         <TextField
-          //onKeyDown={keyPress}
+          onKeyDown={keyPress}
           className="textfield"
           {...params}
           label="Sök plats"

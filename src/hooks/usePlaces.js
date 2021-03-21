@@ -20,21 +20,22 @@ function vec2obj(vec) {
 }
 
 export default function usePlaces(tag) {
-  const [places, setPlaces] = useState({});
+  //return both the vector and object
+  const [places, setPlaces] = useState([[], []]);
 
   useEffect(() => {
     fetchplaces(tag)
       .then((data) => {
         if (data.features) {
-          setPlaces(vec2obj(data.features));
+          setPlaces([data.features, vec2obj(data.features)]);
         } else {
           //console.log("places dont have features");
-          setPlaces({});
+          setPlaces([[], {}]);
         }
       })
       .catch((e) => {
         //console.log("couldnt fetch places");
-        setPlaces({});
+        setPlaces([[], {}]);
       });
   }, [tag]);
 
