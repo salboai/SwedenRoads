@@ -5,7 +5,7 @@ import { Button, Typography } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
+//import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import ReactMarkdown from "react-markdown";
 
@@ -26,7 +26,7 @@ export default function InfoDialog(props) {
   return (
     <>
       <Box onClick={handleClickOpen} className="aboutbutton">
-        <Typography variant="body1" component="span">
+        <Typography variant="button" component="span">
           {props.label}
         </Typography>
       </Box>
@@ -40,9 +40,17 @@ export default function InfoDialog(props) {
       >
         <DialogTitle id="about-dialog">{props.label}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="about-dialog-description">
+          <Typography variant="body1">
             <ReactMarkdown>{props.description}</ReactMarkdown>
-          </DialogContentText>
+            <div className="logo">
+              <a
+                href="https://www.transportforetagen.se/"
+                alt="transportföretagen"
+              >
+                <img src="/transportföretagen_logo.png" />
+              </a>
+            </div>
+          </Typography>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
