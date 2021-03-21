@@ -18,7 +18,7 @@ export default function TopLayout(props) {
           rel="stylesheet"
         />
         <link rel="icon" href="/andyfx.png" />
-        <title>Sveriges Vägar</title>
+        <title>Våra Vägar</title>
       </Helmet>
       <ThemeProvider theme={theme}>
         <CssBaseline />
