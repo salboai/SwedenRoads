@@ -12,7 +12,7 @@ import ReactMarkdown from "react-markdown";
 import "./aboutdialog.css";
 
 export default function InfoDialog(props) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const handleClickOpen = (e) => {
     e.preventDefault();
