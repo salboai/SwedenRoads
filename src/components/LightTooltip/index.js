@@ -8,7 +8,7 @@ const LightTooltip = withStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
     fontFamily: theme.typography.fontFamily,
-    padding: "10px 10px",
+    padding: "1px 10px 1px 10px",
     fontSize: 14,
     lineHeight: "1.25em",
     maxWidth: 300,
