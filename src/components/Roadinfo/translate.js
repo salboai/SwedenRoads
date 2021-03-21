@@ -18,10 +18,10 @@ export function datestr(y, m, d) {
 
 const keytranslation = {
   TllstnI: "Tillståndsindex",
-  IndxKls: "Tillstånd 2020",
-  IndK2030: "Tillstånd 2030 nuvarande budget",
-  IKls_2: "Tillstånd 2030 konstant underhållsskuld",
-  IKls_3: "Tillstånd 2030 minimera underhållsskulden",
+  IndxKls: "Tillståndet 2020",
+  IndK2030: "Tillståndet 2030 nuvarande budget",
+  IKls_2: "Tillståndet 2030 +2 miljarder",
+  IKls_3: "Tillståndet 2030 +4 miljarder",
   Spårdjp: "Spårdjup",
   Sprdjp_: "Spårdjup underhållsstandard",
   IRI: "IRI",
@@ -30,7 +30,7 @@ const keytranslation = {
   Blggnngst: "Beläggning",
   Blggnngsd: "Beläggningsdatum",
   Ålder: "Ålder (år 2020)",
-  FrvntdL: "Förväntad Livslängd",
+  FrvntdL: "Förväntad livslängd",
   Län_nr: "Län",
   Kmmn_nr: "Kommun",
   Vägnmmr: "Vägnummer",
