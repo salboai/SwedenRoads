@@ -12,7 +12,7 @@ import ReactMarkdown from "react-markdown";
 import "./aboutdialog.css";
 
 export default function InfoDialog(props) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(props.defaultopen ? true : false);
 
   const handleClickOpen = (e) => {
     e.preventDefault();
@@ -48,7 +48,10 @@ export default function InfoDialog(props) {
                 href="https://www.transportforetagen.se/"
                 alt="transportföretagen"
               >
-                <img src="/transportföretagen_logo.png" />
+                <img
+                  src="/transportföretagen_logo.png"
+                  alt="transportföretagen_logo"
+                />
               </a>
             </div>
           </Typography>
