@@ -1,6 +1,7 @@
 .aboutbutton {
   /*color: #3175e5;*/
   cursor: pointer;
+  margin: 0rem 0.5rem;
 }
 
 .aboutbutton:hover {

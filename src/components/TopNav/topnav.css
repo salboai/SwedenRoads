@@ -1,9 +1,10 @@
-.about {
+.topnav {
   position: absolute;
   z-index: 8;
   color: #000;
   left: 0px;
   top: 0px;
   background: #fff;
-  padding: 0.1rem 1rem;
+  padding: 0.1rem 0rem;
+  display: flex;
 }
