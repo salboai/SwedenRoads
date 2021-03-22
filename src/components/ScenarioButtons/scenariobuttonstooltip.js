@@ -1,14 +1,12 @@
 const tooltiptext = {
-  IndxKls: `Visar vägars tillstånd år 2020 enligt mätningar.`,
-  IndK2030: `Det tillstånd vägar beräknas få år 2030 med nuvarande budgetanslag för underhåll av vägbeläggning.
-  
-  Nuvarande budget är cirka 3,4 miljarder kronor per år.`,
-  IKls_2: `Det tillstånd vägar beräknas få med den budget som så kostnadseffektivt som möjligt upprätthåller vägnätets nuvarande tillstånd.
-  
-  Denna budget beräknas till cirka 5,4 miljarder kronor per år.`,
-  IKls_3: `Det tillstånd vägar beräknas få med den budget som krävs för att minimera underhållsskulden fram till år 2030.
-  
-  Denna budget beräknas till cirka 7,4 miljarder kronor per år.`,
+  IndxKls: `Så här såg skicket ut på vägarna 2020.`,
+  IndK2030: `Se hur tillståndet på vägarna förändras till 2030 med samma budgetanslag som idag för
+  underhåll av vägbeläggning.`,
+  IKls_2: `Se hur tillståndet på vägarna förändras om staten tilldelar två miljarder extra per år fram till
+  2030. 2 miljarder extra per år är vad som krävs för att inte försämra vägarna ytterligare fram till
+  2030.`,
+  IKls_3: `Se hur tillståndet på vägarna förändras om 4 miljarder extra per år tilldelas budgetanslaget för
+  vägbeläggning. Det är vad som krävs för att minimera andelen vägar i mycket dåligt skick.`,
 };
 
 export { tooltiptext };
