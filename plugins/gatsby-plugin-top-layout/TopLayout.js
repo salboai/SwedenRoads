@@ -17,7 +17,7 @@ export default function TopLayout(props) {
           href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="/andyfx.png" />
+        <link rel="icon" href="/transportföretagen_thumb.png" />
         <title>Våra Vägar</title>
       </Helmet>
       <ThemeProvider theme={theme}>
