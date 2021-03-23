@@ -7,7 +7,7 @@ konkurrenskraft och för att hela Sverige ska leva.`;
 
 const informationcontent = `Sverige har en underhållsskuld på våra statliga vägar. Den beräknas till omkring 19
 miljarder kronor år 2020 och beräknas växa till 42 miljarder kronor 2030 om inte ytterligare medel tillförs
-vägunderhållet, enligt rapporten [Långsiktiga effekter av ett underfinansierat vägunderhåll](https://www.transportforetagen.se/nyhetslista/ny-rapport-mer-an-var-tionde-vag-ar-i-mycket-daligt-skick/.
+vägunderhållet, enligt rapporten [Långsiktiga effekter av ett underfinansierat vägunderhåll](https://www.transportforetagen.se/nyhetslista/ny-rapport-mer-an-var-tionde-vag-ar-i-mycket-daligt-skick/).
 
 På den här sidan kan du se tillståndet på de statliga vägarna visualiserat i rött, gult
 och grönt. Mörkrött är vägar i mycket dåligt skick, rött är vägar i dåligt skick, gult är
