@@ -20,6 +20,8 @@ Markera den väg du är intresserad av så ser du i vänsterspalten fakta om vä
 Alla uppgifter på sidan bygger på öppen data från Trafikverket.
 
 Sverige behöver satsa mer på underhåll av vägnätet. Transportföretagen är
-bransch- och arbetsgivarorganisation för transportsektorn inom Svenskt Näringsliv.`;
+bransch- och arbetsgivarorganisation för transportsektorn inom Svenskt Näringsliv.
+
+Feedback: [anders.josephsson@transportforetagen.se](mailto:anders.josephsson@transportforetagen.se)`;
 
 export { welcomecontent, informationcontent };
