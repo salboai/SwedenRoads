@@ -24,4 +24,9 @@ bransch- och arbetsgivarorganisation för transportsektorn inom Svenskt Närings
 
 Feedback: [anders.josephsson@transportforetagen.se](mailto:anders.josephsson@transportforetagen.se)`;
 
-export { welcomecontent, informationcontent };
+const FAQcontent = [
+  { Q: `Vad är en vanlig fråga?`, A: `Svar på denna vanliga fråga här.` },
+  { Q: `Vad är en vanlig fråga2?`, A: `Svar på denna vanliga fråga2 här.` },
+];
+
+export { welcomecontent, informationcontent, FAQcontent };

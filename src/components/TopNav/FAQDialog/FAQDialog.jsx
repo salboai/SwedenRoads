@@ -9,9 +9,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import ReactMarkdown from "react-markdown";
 
-import "./aboutdialog.css";
+import "./faqdialog.css";
 
-export default function InfoDialog(props) {
+export default function FAQDialog(props) {
   const [open, setOpen] = useState(props.defaultopen ? true : false);
 
   const handleClickOpen = (e) => {
@@ -40,10 +40,16 @@ export default function InfoDialog(props) {
       >
         <DialogTitle id="about-dialog">{props.label}</DialogTitle>
         <DialogContent>
-          <Typography variant="body1" component="span">
-            <ReactMarkdown>{props.description}</ReactMarkdown>
-            {props.children}
-          </Typography>
+          {props.content.map((v, i) => (
+            <Typography variant="body1" component="span" key={i}>
+              <div className="faqQuestion">
+                <ReactMarkdown>{v.Q}</ReactMarkdown>
+              </div>
+              <div className="faqAnswer">
+                <ReactMarkdown>{v.A}</ReactMarkdown>
+              </div>
+            </Typography>
+          ))}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
