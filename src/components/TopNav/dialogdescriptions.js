@@ -22,11 +22,18 @@ Alla uppgifter på sidan bygger på öppen data från Trafikverket.
 Sverige behöver satsa mer på underhåll av vägnätet. Transportföretagen är
 bransch- och arbetsgivarorganisation för transportsektorn inom Svenskt Näringsliv.
 
-Feedback: [anders.josephsson@transportforetagen.se](mailto:anders.josephsson@transportforetagen.se)`;
+Feedback skickas till: [anders.josephsson@transportforetagen.se](mailto:anders.josephsson@transportforetagen.se)`;
 
 const FAQcontent = [
-  { Q: `Vad är en vanlig fråga?`, A: `Svar på denna vanliga fråga här.` },
-  { Q: `Vad är en vanlig fråga2?`, A: `Svar på denna vanliga fråga2 här.` },
+  { Q: `Varför ser det ut som att skicket på vägarna i min kommun är sämre år 2030 med 2 miljarder extra i budget per år, än vad de är 2030 med nuvarande budgetanslag?`, A: `Budgeten fördelas lite olika. Med nuvarande budget prioriteras högtrafikerade vägar, som är dyrare att underhålla, och underhållsskulden på det lågtrafikerade vägnätet ökar. De två extra miljarderna går delvis även till det lågtrafikerade vägnätet, så att dessa inte ska försämras ytterligare. För att förbättra både högtrafikerade vägar och lågtrafikerade vägar behövs 4 miljarder extra skjutas till varje år.` },
+
+  { Q: `Vad menas med vägens tillstånd?`, A: `Vägens tillstånd är en sammanvägning av tre olika indikatorer. Den ena är det som på fackspråk kallas IRI som handlar om vägens ojämnheter i längsled, eller enkelt beskrivet vägens åkkomfort. Den andra är spårdjupet som beskriver vägens ojämnheter i tvärled, och den tredje indikatorn är livslängd, som är den förväntade tiden mellan två underhållsåtgärder. En nybelagd väg med lågt IRI och spårdjup har ett mycket bra tillstånd, medan en väg som är gammal och/eller har ett mycket högt IRI eller spårdjup har ett dåligt tillstånd.` },
+
+  { Q: `Är IRI och spårdjup samt livslängd de enda indikatorerna på en dålig väg?`, A: `Nej, det är de inte, det finns andra, såsom kantdjup. Vi skulle ha kunnat basera indexet på fler indikatorer men studiens omfattning och syfte krävde att vissa begränsningar gjordes. Dessa tre indikatorer är etablerade genom erfarenhet och forskning, och fångar olika aspekter av vägens tillstånd.` },
+
+  { Q: `Hur kan det se ut på en dålig väg i Sverige?`, A: `En väg kan ha funktionella brister, t ex att en kurva är felaktigt doserad eller att vägrenen är för smal. Denna analys handlar om vägbeläggningen och omfattar spårdjup och ojämnheter liksom att vägen kan vara gammal och ha passerat sin förväntade livslängd. En dålig väg kan vara gropig, spårig, ha sprickor eller stensläpp, problem med vattenavrinning, etc. Det finns äldre vägar som inte har några stora problem trots att de är gamla, då den förväntade livslängden baseras på historiska åtgärdsintervall. Vissa vägar åldras bättre än andra.` },
+
+  { Q: `Hur definierar ni underhållsskulden?`, A: `Underhållsskulden utgörs av de vägar vars IRI eller spårdjup överstiger Trafikverkets underhållsstandard, eller vars ålder passerat den förväntade livslängden. Underhållsskulden är kostnaden för att åtgärda dessa vägar.` },
 ];
 
 export { welcomecontent, informationcontent, FAQcontent };
