@@ -6,7 +6,7 @@ const tooltiptext = {
   2030.
   
   2 miljarder extra per år är vad som krävs för att inte försämra vägarna ytterligare fram till
-  2030.`,
+  2030. Individuella vägars tillstånd kan variera, men vägnätets genomsnittliga tillstånd liksom underhållsskulden är detsamma som år 2020.`,
   IKls_3: `Se hur tillståndet på vägarna förändras om 4 miljarder extra per år tilldelas budgetanslaget för
   vägbeläggning.
   
