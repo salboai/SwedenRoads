@@ -75,56 +75,52 @@ export default function Table({ p }) {
         }
         colored
       />
-      <Row name="Spårdjp" l={translatekey("Spårdjp")} r={`${p.Spårdjp} mm`} />
+      <Row name="Vägnmmr" l={translatekey("Vägnmmr")} r={`${p.Vägnmmr}`} />
       <Row
-        name="Sprdjp_"
-        l={translatekey("Sprdjp_")}
-        r={`${p.Sprdjp_} mm`}
+        name="Spårdjp"
+        l={translatekey("Spårdjp")}
+        r={`${p.Spårdjp} mm`}
         colored
       />
-      <Row name="IRI" l={translatekey("IRI")} r={`${p.IRI} mm/m`} />
-      <Row
-        name="IRI_ndr"
-        l={translatekey("IRI_ndr")}
-        r={`${p.IRI_ndr} mm/m`}
-        colored
-      />
+      <Row name="Sprdjp_" l={translatekey("Sprdjp_")} r={`${p.Sprdjp_} mm`} />
+      <Row name="IRI" l={translatekey("IRI")} r={`${p.IRI} mm/m`} colored />
+      <Row name="IRI_ndr" l={translatekey("IRI_ndr")} r={`${p.IRI_ndr} mm/m`} />
       <Row
         name="Mätdatm"
         l={translatekey("Mätdatm")}
         r={datestr(p.Myear, p.Mmonth, p.Mday)}
+        colored
       />
       <Row
         name="Blggnngst"
         l={translatekey("Blggnngst")}
         r={translate("Blggnngst", p.Blggnngst)}
-        colored
       />
       <Row
         name="Blggnngsd"
         l={translatekey("Blggnngsd")}
         r={datestr(p.Byear, p.Bmonth, p.Bday)}
+        colored
       />
-      <Row name="Ålder" l={translatekey("Ålder")} r={`${p.Ålder} år`} colored />
-      <Row name="FrvntdL" l={translatekey("FrvntdL")} r={`${p.FrvntdL} år`} />
+      <Row name="Ålder" l={translatekey("Ålder")} r={`${p.Ålder} år`} />
+      <Row
+        name="FrvntdL"
+        l={translatekey("FrvntdL")}
+        r={`${p.FrvntdL} år`}
+        colored
+      />
       <Row
         name="Län_nr"
         l={translatekey("Län_nr")}
         r={translate("Län_nr", p.Län_nr)}
-        colored
       />
       <Row
         name="Kmmn_nr"
         l={translatekey("Kmmn_nr")}
         r={translate("Kmmn_nr", p.Kmmn_nr)}
-      />
-
-      <Row
-        name="Vägnmmr"
-        l={translatekey("Vägnmmr")}
-        r={`${p.Vägnmmr}`}
         colored
       />
+
       <Row
         name="Vägktgr"
         l={translatekey("Vägktgr")}

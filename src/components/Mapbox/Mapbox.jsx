@@ -32,7 +32,7 @@ export default class Mapbox extends React.Component {
       container: this.mapboxcontainerref.current,
       style: "mapbox://styles/mapbox/light-v10",
       center: [16.5509, 59.6368], //some initial location (västerås)
-      zoom: 12, //some initial zoom
+      zoom: 9, //some initial zoom
       minZoom: 4.0, //this covers entire sweden
       maxZoom: 17.0,
       attributionControl: false,
