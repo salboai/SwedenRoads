@@ -17,12 +17,13 @@ rapporten [Långsiktiga effekter av ett underfinansierat vägunderhåll](https:/
 
 Sök på en kommun uppe i högra hörnet så ser du hur vägarna mår där du bor.
 Markera den väg du är intresserad av så ser du i vänsterspalten fakta om vägen.
+Zooma ut så ser du hela Sveriges statliga vägnät.
 Alla uppgifter på sidan bygger på öppen data från Trafikverket.
 
 Sverige behöver satsa mer på underhåll av vägnätet. Transportföretagen är
 bransch- och arbetsgivarorganisation för transportsektorn inom Svenskt Näringsliv.
 
-Feedback skickas till: [anders.josephsson@transportforetagen.se](mailto:anders.josephsson@transportforetagen.se)`;
+Feedback skickas till: [varavagar@transportforetagen.se](mailto:varavagar@transportforetagen.se)`;
 
 const FAQcontent = [
   { Q: `Varför ser det ut som att skicket på vägarna i min kommun är sämre år 2030 med 2 miljarder extra i budget per år, än vad de är 2030 med nuvarande budgetanslag?`, A: `Budgeten fördelas lite olika. Precis som att det lönar sig att byta olja i en bil i förebyggande syfte, så lönar sig förebyggande underhåll av vägarna i det långa loppet. Det är således fördelaktigt att underhålla bra vägar först, innan dyrare åtgärder sätts in på sämre vägar. Ytterligare 2 miljarder kommer ha en positiv effekt på vägnätet som helhet, men räcker kanske inte för att nå alla vägar i din kommun. Med den nuvarande budgeten prioriteras högtrafikerade vägar, som är dyrare att underhålla, och underhållsskulden på det lågtrafikerade vägnätet ökar. De två extra miljarderna går även till det lågtrafikerade vägnätet, så att dessa inte ska försämras ytterligare. För att förbättra både högtrafikerade vägar och lågtrafikerade vägar visar våra beräkningar att ytterligare 4 miljarder extra behöver skjutas till underhållsbudgeten varje år.` },
