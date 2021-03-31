@@ -34,7 +34,8 @@ const SEO = ({ title, description, image, article }) => {
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    image: `${siteUrl}/${defaultImage}.png`,
+    //image: `${siteUrl}/${defaultImage}.png`,
+    image: `${siteUrl}/varavagar.png`,
     url: `${siteUrl}${pathname}`,
   };
 
