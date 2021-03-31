@@ -35,7 +35,7 @@ const SEO = ({ title, description, image, article }) => {
     title: title || defaultTitle,
     description: description || defaultDescription,
     //image: `${siteUrl}/${defaultImage}.png`,
-    image: `${siteUrl}/varavagar.png`,
+    image: `${siteUrl}/varavagar600315.jpg`,
     url: `${siteUrl}${pathname}`,
   };
 
@@ -47,10 +47,12 @@ const SEO = ({ title, description, image, article }) => {
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
       {seo.url && <meta property="og:url" content={seo.url} />}
-      {(article ? true : null) && <meta property="og:type" content="article" />}
+      {/*<meta property="og:type" content="article" />*/}
       <meta property="og:title" content={ogtitle} />
       <meta property="og:description" content={seo.description} />
-      {seo.image && <meta property="og:image" content={seo.image} />}
+      <meta property="og:image" content={seo.image} />
+      <meta property="og:image:width" content="600" />
+      <meta property="og:image:height" content="315" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={ogtitle} />
       <meta name="twitter:description" content={seo.description} />
