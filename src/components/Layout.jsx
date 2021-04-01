@@ -7,6 +7,8 @@ import useSource from "../hooks/useSource";
 import useProperties from "../hooks/useProperties";
 import TopNav from "./TopNav";
 
+import { isMobileOnly } from "react-device-detect";
+
 const MapillaryClientID = process.env.GATSBY_MAPILLARY_CLIENTID;
 const baseurl = "https://a.mapillary.com/v3/images?";
 
@@ -25,6 +27,14 @@ export default function Layout(props) {
   const properties = useProperties();
   const [road, setRoad] = useState({ isopen: false });
   const [features, setFeatures] = useState([]);
+
+  useEffect(() => {
+    if (isMobileOnly) {
+      alert(
+        "Please note: This website works best on Tablet, Laptop or Desktop."
+      );
+    }
+  }, []);
 
   const onRoadclick = (lnglat, id) => {
     //console.log("clickedroad, id:", id);
