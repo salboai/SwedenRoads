@@ -6,10 +6,13 @@ import { translatekey } from "../Roadinfo/translate";
 import Tooltip from "../LightTooltip";
 import { tooltiptext } from "./scenariobuttonstooltip";
 import ReactMarkdown from "react-markdown";
+import { isMobileOnly } from "react-device-detect";
 
 export default function ScenarioButtons(props) {
   const names = props.names;
   const [selected, setSelected] = useState(names[0]);
+
+  const bottomoffset = isMobileOnly ? "3rem" : "0";
 
   const handleClick = (name) => () => {
     setSelected(name);
@@ -17,7 +20,7 @@ export default function ScenarioButtons(props) {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{ bottom: bottomoffset }}>
       <div className="scenariobuttons">
         {names.map((name) => (
           <Tooltip

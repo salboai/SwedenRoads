@@ -12,6 +12,7 @@ export default function Roadinfo(props) {
       position="absolute"
       bgcolor="#fff"
       width={410}
+      maxWidth="100%"
       height="100vh"
       boxShadow={5}
     >

@@ -32,7 +32,7 @@ export default function Imgbox(props) {
   }, [props.road]);
 
   return (
-    <Box width={410} minHeight={230} position="relative">
+    <Box position="relative" width={410} minHeight={230} maxWidth="100%">
       {isloading && image && (
         <Box className="feedback">
           <CircularProgress />
