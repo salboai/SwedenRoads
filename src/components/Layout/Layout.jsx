@@ -6,7 +6,7 @@ import Roadinfo from "../Roadinfo";
 import useSource from "../../hooks/useSource";
 import useProperties from "../../hooks/useProperties";
 import TopNav from "../TopNav";
-
+import CookieBanner from "../CookieBanner";
 import { isMobileOnly } from "react-device-detect";
 import "./layout.css";
 
@@ -60,6 +60,7 @@ export default function Layout(props) {
 
   return (
     <Box className="layoutcontainer">
+      <CookieBanner />
       <TopNav />
       <Roadinfo road={road} features={features} />
       <Mapbox ref={mapboxref} onRoadclick={onRoadclick} />

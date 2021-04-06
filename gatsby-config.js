@@ -17,7 +17,7 @@ module.exports = {
     "gatsby-plugin-material-ui",
     "gatsby-plugin-react-helmet",
     {
-      resolve: `gatsby-plugin-google-gtag`,
+      resolve: `gatsby-plugin-google-gtag-optin`,
       options: {
         trackingIds: [`${process.env.GTAG_MEASUREMENTID}`],
         gtagConfig: {
