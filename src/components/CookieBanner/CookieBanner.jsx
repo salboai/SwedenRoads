@@ -3,8 +3,9 @@ import { GTAG_OPTIN_KEY } from "gatsby-plugin-google-gtag-optin"; // Or use your
 import "./cookiebanner.css";
 
 export default function CookieBanner() {
+  const isBrowser = typeof window !== "undefined" && window;
   const [accepted, setAccepted] = useState(
-    localStorage.getItem(GTAG_OPTIN_KEY)
+    isBrowser && localStorage.getItem(GTAG_OPTIN_KEY)
   );
 
   const handleConsent = () => {
