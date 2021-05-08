@@ -5,7 +5,7 @@
   width: 100vw;
   height: 4rem;
   line-height: 4rem;
-  z-index: 999;
+  z-index: 10;
   background: #006589;
   color: #fff;
   display: flex;

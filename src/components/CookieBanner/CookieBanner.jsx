@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GTAG_OPTIN_KEY } from "gatsby-plugin-google-gtag-optin"; // Or use your own if you changed it in the config
 import "./cookiebanner.css";
 
@@ -16,11 +16,18 @@ export default function CookieBanner() {
     }
   };
 
-  return accepted ? null : (
+  useEffect(() => {
+    if (accepted) {
+      window.loadGtag();
+    }
+  }, []);
+
+  const ignoreComponent = accepted || !isBrowser;
+  return ignoreComponent ? null : (
     <div className="cookiebanner">
-      <div>Sidan använder cookies för besökarstatistik.</div>
+      <div>This page uses cookies for visitor statistics.</div>
       <button onClick={handleConsent} className="cookieacceptbutton">
-        <div className="cookieacceptbuttontext">Acceptera</div>
+        <div className="cookieacceptbuttontext">Accept</div>
       </button>
     </div>
   );
