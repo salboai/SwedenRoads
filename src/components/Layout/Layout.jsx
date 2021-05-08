@@ -60,9 +60,9 @@ export default function Layout(props) {
 
   return (
     <Box className="layoutcontainer">
-      <CookieBanner />
       <TopNav />
       <Roadinfo road={road} features={features} />
+      <CookieBanner />
       <Mapbox ref={mapboxref} onRoadclick={onRoadclick} />
     </Box>
   );
