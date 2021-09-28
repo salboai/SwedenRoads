@@ -28,7 +28,7 @@ const SEO = ({ title, description, image, article }) => {
     defaultTitle,
     defaultDescription,
     siteUrl,
-    defaultImage,
+    //defaultImage,
   } = allSite.nodes[0].siteMetadata;
 
   const seo = {

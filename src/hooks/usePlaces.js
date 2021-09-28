@@ -24,19 +24,24 @@ export default function usePlaces(tag) {
   const [places, setPlaces] = useState([[], []]);
 
   useEffect(() => {
-    fetchplaces(tag)
-      .then((data) => {
-        if (data.features) {
-          setPlaces([data.features, vec2obj(data.features)]);
-        } else {
-          //console.log("places dont have features");
+    if (tag === "") {
+      //dont fetch for empty string (initial and later)
+      setPlaces([[], {}]);
+    } else {
+      fetchplaces(tag)
+        .then((data) => {
+          if (data.features) {
+            setPlaces([data.features, vec2obj(data.features)]);
+          } else {
+            //console.log("places dont have features");
+            setPlaces([[], {}]);
+          }
+        })
+        .catch((e) => {
+          //console.log("couldnt fetch places");
           setPlaces([[], {}]);
-        }
-      })
-      .catch((e) => {
-        //console.log("couldnt fetch places");
-        setPlaces([[], {}]);
-      });
+        });
+    }
   }, [tag]);
 
   return places;
