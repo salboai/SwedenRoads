@@ -8,19 +8,8 @@ import useProperties from "../../hooks/useProperties";
 import TopNav from "../TopNav";
 import CookieBanner from "../CookieBanner";
 import { isMobileOnly } from "react-device-detect";
+import { fetchNearbyImages } from "../../js/mapillary"
 import "./layout.css";
-
-const MapillaryClientID = process.env.GATSBY_MAPILLARY_CLIENTID;
-const baseurl = "https://a.mapillary.com/v3/images?";
-
-async function fetchNearbyImages(longlat, radius = 150) {
-  //https://www.mapillary.com/developer/api-documentation/#the-image-object
-  const lng = longlat.lng;
-  const lat = longlat.lat;
-  const mapillaryurl = `${baseurl}client_id=${MapillaryClientID}&closeto=${lng},${lat}&radius=${radius}`;
-  const collection = await fetch(mapillaryurl).then((res) => res.json());
-  return collection.features;
-}
 
 export default function Layout(props) {
   const mapboxref = useRef();

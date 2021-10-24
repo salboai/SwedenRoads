@@ -5,7 +5,7 @@ import "./cookiebanner.css";
 function loadGtag() {
   const isBrowser = typeof window !== "undefined" && window;
   if (isBrowser && typeof window.loadGtag == "function") {
-    console.log("loading Gtag");
+    //console.log("loading Gtag");
     window.loadGtag();
   }
 }

@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { fetchMapillaryImg } from "../../js/mapillary";
 import "./Imgbox.css";
-/*
-thumb-320.jpg
-thumb-640.jpg
-thumb-1024.jpg
-thumb-2048.jpg
-*/
-
-const imgurl = (key) => `https://images.mapillary.com/${key}/thumb-320.jpg`;
 
 export default function Imgbox(props) {
   const [isloading, setIsloading] = useState(true);
@@ -18,9 +11,14 @@ export default function Imgbox(props) {
   useEffect(() => {
     const hasimg = props.features.length > 0;
     if (hasimg) {
-      const url = imgurl(props.features[0].properties.key);
-      const capturedate = props.features[0].properties.captured_at.slice(0, 10);
-      setImage({ url, capturedate });
+      fetchMapillaryImg(props.features[0].properties.id)
+        .then((imgobj) => {
+          const d = new Date(imgobj.captured_at);
+          const capturedate = d.toISOString().slice(0, 10);
+          const url = imgobj.thumb_256_url;
+          setImage({ url, capturedate });
+        })
+        .catch((e) => setImage(null));
     } else {
       setImage(null);
     }
